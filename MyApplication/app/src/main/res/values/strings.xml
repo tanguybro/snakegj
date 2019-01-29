@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="desc">Macron vs gilets jaunes</string>
+    <string name="jouer">Jouer</string>
+    <string name="giletj">gilet</string>
+</resources>
