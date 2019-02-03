@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SnakeGJ</string>
+    <string name="jouer">Jouer</string>
+    <string name="snakegj">SnakeGJ</string>
+    <string name="scores">Scores</string>
+    <string name="options">Options</string>
 </resources>

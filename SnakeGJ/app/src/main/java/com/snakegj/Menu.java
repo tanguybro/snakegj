@@ -9,18 +9,14 @@ import android.widget.TextView;
 
 public class Menu extends AppCompatActivity {
 
-    private Button btnJouer;
-    private Button btnScores;
-    private Button btnOptions;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
-        btnJouer = (Button) findViewById(R.id.jouer);
-        btnScores = (Button) findViewById(R.id.scores);
-        btnOptions = (Button) findViewById(R.id.options);
+        Button btnJouer = (Button) findViewById(R.id.jouer);
+        Button btnScores = (Button) findViewById(R.id.scores);
+        Button btnOptions = (Button) findViewById(R.id.options);
 
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override

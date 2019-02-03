@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".Jeu">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="138dp"
+        android:layout_height="341dp"
+        app:srcCompat="@drawable/gilet_jaune"
+        tools:layout_editor_absoluteX="111dp"
+        tools:layout_editor_absoluteY="171dp" />
 </android.support.constraint.ConstraintLayout>
