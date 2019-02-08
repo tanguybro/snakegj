@@ -28,14 +28,14 @@ public class Menu extends AppCompatActivity {
         btnScores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, Jeu.class));
+                startActivity(new Intent(Menu.this, Scores.class));
             }
         });
 
         btnOptions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, Jeu.class));
+                startActivity(new Intent(Menu.this, Options.class));
             }
         });
 
