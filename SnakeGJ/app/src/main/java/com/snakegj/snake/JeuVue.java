@@ -1,9 +1,8 @@
-package com.snakegj;
+package com.snakegj.snake;
 
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -12,17 +11,19 @@ import com.snakegj.plan.Direction;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     // déclaration de l'objet définissant la boucle principale de déplacement et de rendu
-    private SerpentThread serpentThread;
+    private JeuThread jeuThread;
     private Serpent serpent;
+    private Objet fruit;
     private Direction cap;
 
     // création de la surface de dessin
     public JeuVue(Context context) {
         super(context);
         getHolder().addCallback(this);
-        serpentThread = new SerpentThread(this);
-
+        jeuThread = new JeuThread(this);
+        fruit = new Objet(this.getContext());
         serpent = new Serpent(this.getContext());
+        cap = Direction.EST;
     }
 
     //dessine un écran de jeu
@@ -34,22 +35,20 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
 
         // on dessine le snake
         serpent.dessiner(canvas);
+        fruit.dessiner(canvas);
     }
 
 
     //gestion du déplacement du snake
     public void update() {
-        if(cap == Direction.SUD) {
-            serpent.allerEnBas();
-        }
-        if(cap == Direction.NORD) {
-            serpent.allerEnHaut();
-        }
-        if(cap == Direction.EST) {
-            serpent.allerADroite();
-        }
-        if(cap == Direction.OUEST) {
-            serpent.allerAGauche();
+
+        serpent.deplacer(cap);
+
+        if(serpent.getX() >= fruit.getX() &&
+                serpent.getX() <= fruit.getX()+fruit.getLargeur() &&
+                serpent.getY() >= fruit.getY() && serpent.getY() <= fruit.getY()+fruit.getHauteur() ) {
+            serpent.manger();
+            fruit.apparaitre();
         }
     }
 
@@ -57,24 +56,24 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     // Fonction appelée immédiatement après la création de l'objet SurfaceView
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        // création du processus SerpentThread si cela n'est pas fait
-        if(serpentThread.getState()==Thread.State.TERMINATED) {
-            serpentThread = new SerpentThread(this);
+        // création du processus JeuThread si cela n'est pas fait
+        if(jeuThread.getState()==Thread.State.TERMINATED) {
+            jeuThread = new JeuThread(this);
         }
-        serpentThread.setRunning(true);
-        serpentThread.start();
+        jeuThread.setRunning(true);
+        jeuThread.start();
     }
 
     // Fonction obligatoire de l'objet SurfaceView
     // Fonction appelée juste avant que l'objet ne soit détruit.
-    // on tente ici de stopper le processus de serpentThread
+    // on tente ici de stopper le processus de jeuThread
     @Override
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
-        serpentThread.setRunning(false);
+        jeuThread.setRunning(false);
         while (retry) {
             try {
-                serpentThread.join();
+                jeuThread.join();
                 retry = false;
             }
             catch (InterruptedException e) {}
@@ -92,21 +91,17 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             // code exécuté lorsque le doigt touche l'écran.
             case MotionEvent.ACTION_DOWN:
 
-                if(currentX >= serpent.getX()) {
+                if(currentX >= serpent.getX() && (cap == Direction.NORD || cap == Direction.SUD))
                     cap = Direction.EST;
-                }
 
-                if(currentX <= serpent.getX()+serpent.getLargeur()) {
+                else if(currentX <= serpent.getX()+serpent.getLargeur() && (cap == Direction.NORD || cap == Direction.SUD))
                     cap = Direction.OUEST;
-                }
 
-                if(currentY >= serpent.getY()) {
+                else if(currentY >= serpent.getY() && (cap == Direction.OUEST || cap == Direction.EST))
                     cap = Direction.SUD;
-                }
 
-                if(currentY <= serpent.getY()+serpent.getHauteur()) {
+                else if(currentY <= serpent.getY()+serpent.getHauteur() && (cap == Direction.EST || cap == Direction.OUEST))
                     cap = Direction.NORD;
-                }
 
                 break;
 
@@ -123,5 +118,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
         serpent.redimensionner(w,h); // on définit la taille de la balle selon la taille de l'écran
+        fruit.redimensionner(w, h);
     }
 }

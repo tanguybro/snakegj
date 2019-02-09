@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.snake;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -6,21 +6,22 @@ import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public class Serpent {
+import com.snakegj.R;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+public class Objet {
     private BitmapDrawable image;
     private int x, y;
     private int hauteur, largeur;
     private int hauteurEcran, largeurEcran;
 
-
-    //déplacement du snake
-    private static final int INCREMENT = 10;
-    private int vitesseX = INCREMENT, vitesseY = INCREMENT;
     private Context contexte;
 
-    public Serpent(Context contexte) {
+    public Objet(Context contexte) {
         this.contexte = contexte;
-        x = 100;
+        x = 50;
         y = 250;
     }
 
@@ -48,7 +49,6 @@ public class Serpent {
         return hauteur;
     }
 
-
     public BitmapDrawable setImage(Context c, int ressource, int largeur, int hauteur) {
         Drawable d = c.getResources().getDrawable(ressource);
         Bitmap bitmap = ((BitmapDrawable) d).getBitmap();
@@ -61,38 +61,25 @@ public class Serpent {
         this.hauteurEcran=hauteurEcran;
 
         // on définit (au choix) la taille de la balle à 1/5ème de la largeur de l'écran
-        largeur=largeurEcran/10;
-        hauteur=hauteurEcran/10;
-        image = setImage(contexte,R.drawable.gilet_jaune,largeur,hauteur);
+        largeur=largeurEcran/12;
+        hauteur=hauteurEcran/15;
+        image = setImage(contexte, R.drawable.ball,largeur,hauteur);
     }
 
-    public boolean detecterCollision()
-    {
+    public void apparaitre() {
+            int newX = (int) (Math.random() * (largeurEcran) - 25);
+            int newY = (int) (Math.random() * (hauteurEcran) - 25);
+            setX(newX);
+            setY(newY);
+            System.out.println(newX);
+    }
+
+    public boolean detecterCollision() {
         return x+largeur > largeurEcran || y+hauteur > hauteurEcran || x<0 || y<0;
     }
 
-    public void allerEnHaut() {
-        y -= vitesseY;
-    }
-
-    public void allerEnBas() {
-        y += vitesseY;
-    }
-
-    public void allerAGauche() {
-        x -= vitesseX;
-    }
-
-    public void allerADroite() {
-        x += vitesseX;
-    }
-
-    public void dessiner(Canvas canvas)
-    {
+    public void dessiner(Canvas canvas) {
         if(image==null) {return;}
-        canvas.drawBitmap(image.getBitmap(), x, y, null);
+            canvas.drawBitmap(image.getBitmap(), x, y, null);
     }
-
-
-
 }
