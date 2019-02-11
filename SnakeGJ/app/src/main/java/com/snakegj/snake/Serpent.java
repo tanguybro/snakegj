@@ -16,30 +16,17 @@ public class Serpent {
     private BitmapDrawable image;
     private int x, y;
     private int hauteur, largeur;
-    private int hauteurEcran, largeurEcran;
     private Direction cap;
-
 
     //déplacement du snake
     private static final int PAS = 5;
-    private int vitesseX = PAS, vitesseY = PAS;
-    private Context contexte;
 
-    public Serpent(Context contexte) {
-        this.contexte = contexte;
+    public Serpent() {
         anneaux = new ArrayList<BitmapDrawable>();
         anneaux.add(image);
         cap = Direction.EST;
         x = 100;
         y = 250;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public int getX() {
@@ -58,14 +45,13 @@ public class Serpent {
         return hauteur;
     }
 
-    public int getHauteurEcran() {
-        return hauteurEcran;
+    public Direction getCap() {
+        return cap;
     }
 
-    public int getLargeurEcran() {
-        return largeurEcran;
+    public void setCap(Direction cap) {
+        this.cap = cap;
     }
-
 
     public BitmapDrawable setImage(Context c, int ressource, int largeur, int hauteur) {
         Drawable d = c.getResources().getDrawable(ressource);
@@ -73,27 +59,21 @@ public class Serpent {
         return new BitmapDrawable(c.getResources(), Bitmap.createScaledBitmap(bitmap, largeur, hauteur, true));
     }
 
-    public void redimensionner(int largeurEcran, int hauteurEcran) {
-
-        this.largeurEcran=largeurEcran;
-        this.hauteurEcran=hauteurEcran;
-
-        // on définit (au choix) la taille de la balle à 1/5ème de la largeur de l'écran
-        largeur=largeurEcran/10;
-        hauteur=hauteurEcran/10;
-        image = setImage(contexte, R.drawable.gilet_jaune,largeur,hauteur);
+    public void redimensionner(Context c) {
+        largeur = JeuVue.getLargeurEcran() / 10;
+        hauteur = JeuVue.getHauteurEcran() / 10;
+        image = setImage(c, R.drawable.gilet_jaune,largeur,hauteur);
     }
 
     public void manger() {
         anneaux.add(image);
     }
 
-    public boolean detecterCollision()
-    {
-        return x+largeur > largeurEcran || y+hauteur > hauteurEcran || x<0 || y<0;
+    public boolean estAuBord() {
+        return x + largeur >= JeuVue.getLargeurEcran() || y + hauteur >= JeuVue.getHauteurEcran() || x <= 0 || y <= 0;
     }
 
-    public void deplacer(Direction cap) {
+    public void deplacer() {
 
         switch (cap) {
             case EST:
@@ -108,34 +88,34 @@ public class Serpent {
             case SUD:
                 allerEnBas();
                 break;
-
         }
     }
 
     public void allerEnHaut() {
         cap = Direction.NORD;
-        y -= vitesseY;
+        y -= PAS;
     }
 
     public void allerEnBas() {
         cap = Direction.SUD;
-        y += vitesseY;
+        y += PAS;
     }
 
     public void allerAGauche() {
         cap = Direction.OUEST;
-        x -= vitesseX;
+        x -= PAS;
     }
 
     public void allerADroite() {
         cap = Direction.EST;
-        x += vitesseX;
+        x += PAS;
     }
 
-    public void dessiner(Canvas canvas)
-    {
+    public void dessiner(Canvas canvas) {
         int decalage = 0;
-        if(image==null) {return;}
+        if(image == null) {
+            return;
+        }
         for(BitmapDrawable b : anneaux) {
             if(cap == Direction.EST) {
                 canvas.drawBitmap(image.getBitmap(), x + decalage, y, null);
@@ -155,7 +135,6 @@ public class Serpent {
             }
         }
     }
-
 
 
 }

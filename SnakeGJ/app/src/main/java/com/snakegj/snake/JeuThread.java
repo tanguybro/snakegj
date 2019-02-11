@@ -3,8 +3,6 @@ import android.graphics.Canvas;
 
 public class JeuThread extends Thread {
 
-
-        // on définit arbitrairement le nombre d'images par secondes à 30
         private final static int IMG_PAR_SDE = 60;
 
         // si on veut X images en 1 seconde, soit en 1000 ms,
