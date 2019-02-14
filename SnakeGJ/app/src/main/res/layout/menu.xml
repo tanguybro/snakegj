@@ -34,11 +34,11 @@
             android:text="@string/jouer" />
 
         <Button
-            android:id="@+id/scores"
+            android:id="@+id/classement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/scores" />
+            android:text="@string/classement" />
 
         <Button
             android:id="@+id/options"

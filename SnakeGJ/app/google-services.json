@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "156163411244",
+    "firebase_url": "https://snakegj-a2631.firebaseio.com",
+    "project_id": "snakegj-a2631",
+    "storage_bucket": "snakegj-a2631.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156163411244:android:64dc3081d0c84b9b",
+        "android_client_info": {
+          "package_name": "com.snakegj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156163411244-85me3r818j2drnaddbmsf15qbgajlqef.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_gJT59T__IIfNnmhGw8BJhfGQexXGTUI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

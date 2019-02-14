@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Options"></activity>
-        <activity android:name=".Scores" />
+        <activity android:name=".Classement" />
         <activity android:name=".Jeu" />
         <activity android:name=".Menu">
             <intent-filter>
