@@ -10,7 +10,6 @@ import android.view.SurfaceView;
 import com.snakegj.plan.Direction;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
-    // déclaration de l'objet définissant la boucle principale de déplacement et de rendu
     private JeuThread jeuThread;
     private Serpent serpent;
     private Fruit fruit;

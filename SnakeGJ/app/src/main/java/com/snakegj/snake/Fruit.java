@@ -17,7 +17,9 @@ public class Fruit {
     private int hauteur, largeur;
 
     public Fruit() {
-        apparaitre();
+      //  apparaitre(); Met en (0,0) jsp pq
+        x = 100;
+        y = 100;
     }
 
     public int getX() {

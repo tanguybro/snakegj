@@ -80,15 +80,23 @@ public class Serpent {
         switch (cap) {
             case EST:
                 allerADroite();
+                if(estAuBord())
+                    x = 1;
                 break;
             case OUEST:
                 allerAGauche();
+                if(estAuBord())
+                    x = JeuVue.getLargeurEcran() - largeur - 1;
                 break;
             case NORD:
                 allerEnHaut();
+                if(estAuBord())
+                    y = JeuVue.getHauteurEcran() - hauteur - 1;
                 break;
             case SUD:
                 allerEnBas();
+                if(estAuBord())
+                    y = 1;
                 break;
         }
     }
@@ -115,9 +123,8 @@ public class Serpent {
 
     public void dessiner(Canvas canvas) {
         int decalage = 0;
-        if(image == null) {
+        if(image == null)
             return;
-        }
         for(BitmapDrawable b : anneaux) {
             if(cap == Direction.EST) {
                 canvas.drawBitmap(b.getBitmap(), x + decalage, y, null);
