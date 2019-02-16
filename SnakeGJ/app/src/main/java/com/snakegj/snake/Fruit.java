@@ -11,8 +11,7 @@ import com.snakegj.R;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Fruit {
-    private BitmapDrawable image;
+public class Fruit extends Element {
     private int x, y;
     private int hauteur, largeur;
 
@@ -38,25 +37,21 @@ public class Fruit {
         return hauteur;
     }
 
-    public BitmapDrawable setImage(Context c, int ressource, int largeur, int hauteur) {
-        BitmapDrawable b = (BitmapDrawable) c.getResources().getDrawable(ressource);
-        return new BitmapDrawable(c.getResources(), Bitmap.createScaledBitmap(b.getBitmap(), largeur, hauteur, true));
-    }
-
-    public void redimensionner(Context c) {
-        largeur = JeuVue.getLargeurEcran() / 12;
-        hauteur = JeuVue.getHauteurEcran() / 15;
-        image = setImage(c, R.drawable.ball,largeur,hauteur);
-    }
-
     public void apparaitre() {
         x = (int) (Math.random() * (JeuVue.getLargeurEcran()) - 25);
         y = (int) (Math.random() * (JeuVue.getHauteurEcran()) - 25);
     }
 
     public void dessiner(Canvas canvas) {
-        if(image == null)
+        if(getImage() == null)
             return;
-        canvas.drawBitmap(image.getBitmap(), x, y, null);
+        canvas.drawBitmap(getImage().getBitmap(), x, y, null);
     }
+
+    @Override
+    public void modifierDimensions(int largeur, int hauteur) {
+        this.largeur = largeur;
+        this.hauteur = hauteur;
+    }
+
 }

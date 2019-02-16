@@ -7,6 +7,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.snakegj.R;
 import com.snakegj.plan.Direction;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
@@ -34,9 +35,8 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
 
     //dessine un écran de jeu
     public void doDraw(Canvas canvas) {
-        if(canvas==null) {
+        if(canvas == null)
             return;
-        }
         canvas.drawColor(Color.WHITE);  // on efface l'écran, en blanc
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
@@ -45,45 +45,35 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     //gestion du serpent
     public void update() {
         serpent.deplacer();
-
-        if(!detecteCollision()) {
+        if(!estPasSurFruit()) {
               serpent.manger();
               fruit.apparaitre();
         }
     }
 
-    public boolean detecteCollision() {
-        return fruit.getX() >= serpent.getX() + serpent.getLargeur()
+    public boolean estPasSurFruit() {  /** A CHANGER */
+        return fruit.getX() >= serpent.getX() + serpent.getLargeurAnneau()
                 || fruit.getX() + fruit.getLargeur() <= serpent.getX()
-                || fruit.getY() >= serpent.getY() + serpent.getHauteur()
+                || fruit.getY() >= serpent.getY() + serpent.getHauteurAnneau()
                 || fruit.getY() + fruit.getHauteur() <= serpent.getY();
     }
 
     // Gère les touchés sur l'écran
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int currentX = (int)event.getX();
-        int currentY = (int)event.getY();
+        int x = (int)event.getX();
+        int y = (int)event.getY();
         Direction cap = serpent.getCap();
 
-        switch (event.getAction()) {
-
-            // code exécuté lorsque le doigt touche l'écran.
-            case MotionEvent.ACTION_DOWN:
-
-                if(currentX >= serpent.getX() && (cap == Direction.NORD || cap == Direction.SUD))
-                    serpent.setCap(Direction.EST);
-
-                else if(currentX <= serpent.getX()+serpent.getLargeur() && (cap == Direction.NORD || cap == Direction.SUD))
-                    serpent.setCap(Direction.OUEST);
-
-                else if(currentY >= serpent.getY() && (cap == Direction.OUEST || cap == Direction.EST))
-                    serpent.setCap(Direction.SUD);
-
-                else if(currentY <= serpent.getY()+serpent.getHauteur() && (cap == Direction.EST || cap == Direction.OUEST))
-                    serpent.setCap(Direction.NORD);
-
-                break;
+        if(event.getAction() == MotionEvent.ACTION_DOWN) { // code exécuté lorsque le doigt touche l'écran.
+            if (x >= serpent.getX() && (cap == Direction.NORD || cap == Direction.SUD))
+                serpent.setCap(Direction.EST);
+            else if (x <= serpent.getX() && (cap == Direction.NORD || cap == Direction.SUD))
+                serpent.setCap(Direction.OUEST);
+            else if (y >= serpent.getY() && (cap == Direction.OUEST || cap == Direction.EST))
+                serpent.setCap(Direction.SUD);
+            else if (y <= serpent.getY() && (cap == Direction.EST || cap == Direction.OUEST))
+                serpent.setCap(Direction.NORD);
         }
         return true;  // On retourne vrai pour indiquer qu'on a géré l'évènement
     }
@@ -123,7 +113,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
         hauteurEcran = h;
         largeurEcran = w;
-        serpent.redimensionner(getContext());
-        fruit.redimensionner(getContext());
+        serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
+        fruit.redimensionner(getContext(), R.drawable.ball, 12, 15);
     }
 }
