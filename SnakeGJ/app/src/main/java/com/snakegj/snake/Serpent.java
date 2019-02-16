@@ -23,7 +23,6 @@ public class Serpent {
 
     public Serpent() {
         anneaux = new ArrayList<BitmapDrawable>();
-        anneaux.add(image);
         cap = Direction.EST;
         x = 100;
         y = 250;
@@ -63,6 +62,7 @@ public class Serpent {
         largeur = JeuVue.getLargeurEcran() / 10;
         hauteur = JeuVue.getHauteurEcran() / 10;
         image = setImage(c, R.drawable.gilet_jaune,largeur,hauteur);
+        anneaux.add(image);
     }
 
     public void manger() {
@@ -74,6 +74,8 @@ public class Serpent {
     }
 
     public void deplacer() {
+
+        //remplacer l'avant-dernier anneau par le dernier etc...
 
         switch (cap) {
             case EST:
@@ -118,19 +120,19 @@ public class Serpent {
         }
         for(BitmapDrawable b : anneaux) {
             if(cap == Direction.EST) {
-                canvas.drawBitmap(image.getBitmap(), x + decalage, y, null);
+                canvas.drawBitmap(b.getBitmap(), x + decalage, y, null);
                 decalage -= getLargeur();
             }
             if(cap == Direction.OUEST) {
-                canvas.drawBitmap(image.getBitmap(), x + decalage, y, null);
+                canvas.drawBitmap(b.getBitmap(), x + decalage, y, null);
                 decalage += getLargeur();
             }
             if(cap == Direction.NORD) {
-                canvas.drawBitmap(image.getBitmap(), x, y + decalage, null);
+                canvas.drawBitmap(b.getBitmap(), x, y + decalage, null);
                 decalage += getHauteur();
             }
             if(cap == Direction.SUD) {
-                canvas.drawBitmap(image.getBitmap(), x, y + decalage, null);
+                canvas.drawBitmap(b.getBitmap(), x, y + decalage, null);
                 decalage -= getHauteur();
             }
         }

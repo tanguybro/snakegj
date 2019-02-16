@@ -47,11 +47,17 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         serpent.deplacer();
 
-        if(serpent.getX() >= fruit.getX() && serpent.getX() <= fruit.getX() + fruit.getLargeur() &&
-           serpent.getY() >= fruit.getY() && serpent.getY() <= fruit.getY() + fruit.getHauteur() ) {
+        if(!detecteCollision()) {
               serpent.manger();
               fruit.apparaitre();
         }
+    }
+
+    public boolean detecteCollision() {
+        return fruit.getX() >= serpent.getX() + serpent.getLargeur()
+                || fruit.getX() + fruit.getLargeur() <= serpent.getX()
+                || fruit.getY() >= serpent.getY() + serpent.getHauteur()
+                || fruit.getY() + fruit.getHauteur() <= serpent.getY();
     }
 
     // Gère les touchés sur l'écran
