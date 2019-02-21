@@ -7,6 +7,9 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
 
@@ -23,6 +26,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         jeuThread = new JeuThread(this);
         fruit = new Fruit();
         serpent = new Serpent();
+        finPartie();
     }
 
     public static int getHauteurEcran() {
@@ -76,6 +80,12 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
                 serpent.setCap(Direction.NORD);
         }
         return true;  // On retourne vrai pour indiquer qu'on a géré l'évènement
+    }
+
+    public void finPartie() {
+        FirebaseApp.initializeApp(getContext());
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
+        database.child("Classement").setValue("Julien", 23);
     }
 
     // Fonction obligatoire de l'objet SurfaceView

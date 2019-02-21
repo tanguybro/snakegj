@@ -9,10 +9,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Classement extends AppCompatActivity {
 
-
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("score");
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
