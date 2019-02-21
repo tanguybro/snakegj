@@ -83,9 +83,8 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void finPartie() {
-        FirebaseApp.initializeApp(getContext());
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference();
-        database.child("Classement").setValue("Julien", 23);
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        database.setValue(23);
     }
 
     // Fonction obligatoire de l'objet SurfaceView
