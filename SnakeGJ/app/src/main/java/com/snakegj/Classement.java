@@ -5,7 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
@@ -13,11 +15,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 public class Classement extends AppCompatActivity {
 
     private TableLayout table;
+    private TableRow entete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,37 +32,53 @@ public class Classement extends AppCompatActivity {
         setContentView(R.layout.classement);
 
         table = (TableLayout) findViewById(R.id.tableScores);
+        entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
 
         FirebaseApp.initializeApp(this);
-        finPartie();
+        afficherClassement();
+
 
     }
 
     public void afficherClassement() {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.addValueEventListener(new ValueEventListener() {
+        table.addView(entete);
+
+        //on trie dans l'ordre croissant et on recupere les 10 derniers scores
+        Query q = database.orderByValue().limitToLast(10);
+        q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int valeur = 0;
+                ArrayList<View> vues = new ArrayList<>();
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
-                    if(valeur < (Integer) d.getValue()) {
-                        valeur = ((Integer) d.getValue()).intValue();
-
-                    }
+                    TableRow ligne = (TableRow) getLayoutInflater().inflate(R.layout.tableau_ligne, table, false);
+                    TextView pseudo = (TextView) ligne.findViewById(R.id.pseudo);
+                    TextView score = (TextView) ligne.findViewById(R.id.score);
+                    pseudo.setText(d.getKey());
+                    score.setText(String.valueOf(d.getValue()));
+                    vues.add(ligne);
 
                 }
+
+                Collections.reverse(vues);
+
+                for(View v : vues)
+                    table.addView(v);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("The read failed: " ,databaseError.getMessage());
+
             }
         });
+
     }
 
     public void finPartie() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        /*DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         database.child("Axel").setValue(23);
+        database.child("Tanguy").setValue(12);
         database.child("Lucien").setValue(50);
+        */
     }
 }
