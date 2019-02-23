@@ -17,6 +17,7 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        FirebaseApp.initializeApp(this);
 
         Button btnJouer = (Button) findViewById(R.id.jouer);
         Button btnClassement = (Button) findViewById(R.id.classement);

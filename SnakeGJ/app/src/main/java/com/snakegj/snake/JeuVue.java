@@ -26,7 +26,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         jeuThread = new JeuThread(this);
         fruit = new Fruit();
         serpent = new Serpent();
-        finPartie();
     }
 
     public static int getHauteurEcran() {
@@ -82,10 +81,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         return true;  // On retourne vrai pour indiquer qu'on a géré l'évènement
     }
 
-    public void finPartie() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.setValue(23);
-    }
 
     // Fonction obligatoire de l'objet SurfaceView
     // Fonction appelée immédiatement après la création de l'objet SurfaceView

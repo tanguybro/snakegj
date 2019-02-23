@@ -13,12 +13,15 @@ import java.util.ArrayList;
 
 public class Serpent extends Element {
     private Anneau tete;
+    private ArrayList<Anneau> anneaux;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
-    private static final int PAS = 5; //déplacement du snake
+    private static final int PAS = 50; //déplacement du snake
 
     public Serpent() {
-        tete = new Anneau(null, 100, 200);
+        anneaux = new ArrayList<>();
+        tete = new Anneau(100, 200);
+        anneaux.add(tete);
         cap = Direction.EST;
     }
 
@@ -52,6 +55,14 @@ public class Serpent extends Element {
 
     public void deplacer() {
         /**remplacer l'avant-dernier anneau par le dernier etc...*/
+
+        for(int i = anneaux.size(); i >= 0; i--) {
+            int x = anneaux.get(i-1).getX();
+            int y = anneaux.get(i-1).getY();
+
+            anneaux.get(i).placerA(x, y);
+        }
+
 
         switch (cap) {
             case EST:

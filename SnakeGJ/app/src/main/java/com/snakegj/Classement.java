@@ -34,7 +34,7 @@ public class Classement extends AppCompatActivity {
         table = (TableLayout) findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
 
-        FirebaseApp.initializeApp(this);
+
         afficherClassement();
 
 
@@ -74,11 +74,4 @@ public class Classement extends AppCompatActivity {
 
     }
 
-    public void finPartie() {
-        /*DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.child("Axel").setValue(23);
-        database.child("Tanguy").setValue(12);
-        database.child("Lucien").setValue(50);
-        */
-    }
 }
