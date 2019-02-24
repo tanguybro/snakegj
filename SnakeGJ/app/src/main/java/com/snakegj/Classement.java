@@ -33,11 +33,7 @@ public class Classement extends AppCompatActivity {
 
         table = (TableLayout) findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
-
-
         afficherClassement();
-
-
     }
 
     public void afficherClassement() {

@@ -1,5 +1,6 @@
 package com.snakegj;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -12,7 +13,11 @@ public class Jeu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(new JeuVue(this));
+        Intent intent = getIntent();
+        String nom = intent.getStringExtra("Pseudo");
+        setContentView(new JeuVue(this, nom));
+
+
 
 
     }

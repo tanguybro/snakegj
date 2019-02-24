@@ -23,6 +23,9 @@ public class Menu extends AppCompatActivity {
         Button btnClassement = (Button) findViewById(R.id.classement);
         Button btnOptions = (Button) findViewById(R.id.options);
 
+        Intent intent = new Intent(this, Popup.class);
+        startActivity(intent);
+
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import com.snakegj.plan.Direction;
 
 public class Anneau {
-    private Anneau precedent;
+    private Anneau suivant;
     private int x, y;
 
     public Anneau(int x, int y) {
@@ -15,14 +15,11 @@ public class Anneau {
     }
 
     public Anneau(Anneau a, int x, int y) {
-        precedent = a;
-        placerA(x, y);
-    }
-
-    public void placerA(int x, int y) {
+        suivant = a;
         this.x = x;
         this.y = y;
     }
+
 
     public int getX() {
         return x;
@@ -33,55 +30,42 @@ public class Anneau {
     }
 
     public void avancer(int pasX, int pasY) {
-        placerA(precedent.x, precedent.y);
-    }
-
-    public void setX(int x, Direction cap) {
-        this.x = x;
-        if(precedent != null) {
-            if(cap == Direction.EST)
-                precedent.setX(x - Serpent.getLargeurAnneau(), cap);
-            else
-                precedent.setX(x + Serpent.getLargeurAnneau(), cap);
+        this.x += pasX;
+        this.y += pasY;
+        if(suivant != null) {
+            x = suivant.x;
+            y = suivant.y;
+            suivant.avancer(pasX, pasY);
         }
     }
 
-    public void setY(int y, Direction cap) {
+    public void setX(int x) {
+        this.x = x;
+        if(suivant != null) {
+            suivant.setX(x);
+        }
+    }
+
+    public void setY(int y) {
         this.y = y;
-        if(precedent != null) {
-            if(cap == Direction.SUD)
-                precedent.setY(y - Serpent.getHauteurAnneau(), cap);
-            else
-                precedent.setY(y + Serpent.getHauteurAnneau(), cap);
+        if(suivant != null) {
+            suivant.setY(y);
         }
 
     }
 
     public void ajouterAnneau(Direction cap) {
-        if(precedent != null)
-            precedent.ajouterAnneau(cap);
+        if(suivant != null)
+            suivant.ajouterAnneau(cap);
         else {
-            switch (cap) {
-                case OUEST:
-                    precedent = new Anneau(null, x + Serpent.getLargeurAnneau(), y);
-                    break;
-                case EST:
-                    precedent = new Anneau(null, x - Serpent.getLargeurAnneau(), y);
-                    break;
-                case NORD:
-                    precedent = new Anneau(null, x, y + Serpent.getHauteurAnneau());
-                    break;
-                case SUD:
-                    precedent = new Anneau(null, x, y - Serpent.getHauteurAnneau());
-                    break;
-            }
+            suivant = new Anneau(x, y);
         }
     }
 
     public void dessiner(Canvas canvas, Bitmap image) {
         canvas.drawBitmap(image, x, y, null);
-        if(precedent != null)
-            precedent.dessiner(canvas, image);
+        if(suivant != null)
+            suivant.dessiner(canvas, image);
     }
 
 }

@@ -17,15 +17,18 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
     private Serpent serpent;
     private Fruit fruit;
+    private String pseudo;
+    private int score = 0;
     private static int hauteurEcran, largeurEcran;
 
     // création de la surface de dessin
-    public JeuVue(Context context) {
+    public JeuVue(Context context, String nom) {
         super(context);
         getHolder().addCallback(this);
         jeuThread = new JeuThread(this);
         fruit = new Fruit();
         serpent = new Serpent();
+        pseudo = nom;
     }
 
     public static int getHauteurEcran() {
@@ -34,6 +37,13 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
 
     public static int getLargeurEcran() {
         return largeurEcran;
+    }
+
+    public void finDePartie() {
+        if(serpent.estAuBord()) {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+            database.child(pseudo).setValue(score);
+        }
     }
 
     //dessine un écran de jeu
@@ -51,6 +61,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         if(!estPasSurFruit()) {
               serpent.manger();
               fruit.apparaitre();
+              score++;
         }
     }
 
