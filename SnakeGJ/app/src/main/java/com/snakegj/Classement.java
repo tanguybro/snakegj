@@ -1,16 +1,13 @@
 package com.snakegj;
 
-import android.app.ActionBar;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +28,7 @@ public class Classement extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.classement);
 
-        table = (TableLayout) findViewById(R.id.tableScores);
+        table = findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
         afficherClassement();
     }
@@ -48,12 +45,11 @@ public class Classement extends AppCompatActivity {
                 ArrayList<View> vues = new ArrayList<>();
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
                     TableRow ligne = (TableRow) getLayoutInflater().inflate(R.layout.tableau_ligne, table, false);
-                    TextView pseudo = (TextView) ligne.findViewById(R.id.pseudo);
-                    TextView score = (TextView) ligne.findViewById(R.id.score);
+                    TextView pseudo = ligne.findViewById(R.id.pseudo);
+                    TextView score = ligne.findViewById(R.id.score);
                     pseudo.setText(d.getKey());
                     score.setText(String.valueOf(d.getValue()));
                     vues.add(ligne);
-
                 }
 
                 Collections.reverse(vues);

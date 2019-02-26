@@ -1,17 +1,13 @@
-package com.snakegj.snake;
+package com.snakegj.snake.elementsGraphiques;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 
-import com.snakegj.R;
 import com.snakegj.plan.Direction;
+import com.snakegj.snake.Anneau;
+import com.snakegj.snake.JeuVue;
+import com.snakegj.snake.elementsGraphiques.ElementGraphique;
 
-import java.util.ArrayList;
-
-public class Serpent extends Element {
+public class Serpent extends ElementGraphique {
     private Anneau tete;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
@@ -47,12 +43,10 @@ public class Serpent extends Element {
     }
 
     public void manger() {
-        tete.ajouterAnneau(cap);
+        tete.ajouterAnneau();
     }
 
     public void deplacer() {
-        /**remplacer l'avant-dernier anneau par le dernier etc...*/
-
 
         switch (cap) {
             case EST:

@@ -1,10 +1,13 @@
-package com.snakegj.snake;
+package com.snakegj.snake.elementsGraphiques;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.res.ResourcesCompat;
 
-public abstract class Element {
+import com.snakegj.snake.JeuVue;
+
+public abstract class ElementGraphique {
     private BitmapDrawable image;
 
     public abstract void modifierDimensions(int largeur, int hauteur);
@@ -14,7 +17,7 @@ public abstract class Element {
     }
 
     private void setImage(Context c, int ressource, int largeur, int hauteur) {
-        BitmapDrawable b = (BitmapDrawable) c.getResources().getDrawable(ressource);
+        BitmapDrawable b = (BitmapDrawable) ResourcesCompat.getDrawable(c.getResources(), ressource, null);
         image = new BitmapDrawable(c.getResources(), Bitmap.createScaledBitmap(b.getBitmap(), largeur, hauteur, true));
     }
 

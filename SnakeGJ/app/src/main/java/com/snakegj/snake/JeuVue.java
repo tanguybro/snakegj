@@ -7,11 +7,12 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
+import com.snakegj.snake.elementsGraphiques.Fruit;
+import com.snakegj.snake.elementsGraphiques.Serpent;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
@@ -39,11 +40,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         return largeurEcran;
     }
 
-    public void finDePartie() {
-        if(serpent.estAuBord()) {
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-            database.child(pseudo).setValue(score);
-        }
+    public void finPartie() {
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        database.child(pseudo).setValue(score);
     }
 
     //dessine un écran de jeu
@@ -130,5 +129,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         largeurEcran = w;
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
         fruit.redimensionner(getContext(), R.drawable.ball, 12, 15);
+        fruit.apparaitre();
     }
 }

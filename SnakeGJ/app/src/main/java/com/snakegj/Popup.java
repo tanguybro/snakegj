@@ -15,8 +15,8 @@ public class Popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        EditText pseudo = (EditText) findViewById(R.id.inputPseudo);
-        Button btnOk = (Button) findViewById(R.id.btnOk);
+        EditText pseudo = findViewById(R.id.inputPseudo);
+        Button btnOk = findViewById(R.id.btnOk);
 
         Intent intent = new Intent(this, Popup.class);
         intent.putExtra("Pseudo", pseudo.getText().toString());

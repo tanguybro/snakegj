@@ -1,24 +1,17 @@
-package com.snakegj.snake;
+package com.snakegj.snake.elementsGraphiques;
 
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 
-import com.snakegj.R;
+import com.snakegj.snake.JeuVue;
+import com.snakegj.snake.elementsGraphiques.ElementGraphique;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-public class Fruit extends Element {
+public class Fruit extends ElementGraphique {
     private int x, y;
     private int hauteur, largeur;
 
     public Fruit() {
-      //  apparaitre(); Met en (0,0) jsp pq
-        x = 100;
-        y = 100;
+        x = 0;
+        y = 0;
     }
 
     public int getX() {

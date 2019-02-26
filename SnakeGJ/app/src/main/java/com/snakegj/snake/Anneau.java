@@ -20,7 +20,6 @@ public class Anneau {
         this.y = y;
     }
 
-
     public int getX() {
         return x;
     }
@@ -51,12 +50,11 @@ public class Anneau {
         if(suivant != null) {
             suivant.setY(y);
         }
-
     }
 
-    public void ajouterAnneau(Direction cap) {
+    public void ajouterAnneau() {
         if(suivant != null)
-            suivant.ajouterAnneau(cap);
+            suivant.ajouterAnneau();
         else {
             suivant = new Anneau(x, y);
         }
