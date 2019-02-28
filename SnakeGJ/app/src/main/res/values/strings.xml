@@ -4,4 +4,5 @@
     <string name="snakegj">SnakeGJ</string>
     <string name="classement">Classement</string>
     <string name="options">Options</string>
+    <string name="score">Score : 0</string>
 </resources>

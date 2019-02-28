@@ -3,9 +3,11 @@ package com.snakegj.snake;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -61,6 +63,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
               serpent.manger();
               fruit.apparaitre();
               score++;
+             // affichageScore.setText("Score : " + score);
         }
     }
 

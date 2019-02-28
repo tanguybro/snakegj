@@ -19,12 +19,9 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.menu);
         FirebaseApp.initializeApp(this);
 
-        Button btnJouer = (Button) findViewById(R.id.jouer);
-        Button btnClassement = (Button) findViewById(R.id.classement);
-        Button btnOptions = (Button) findViewById(R.id.options);
-
-        Intent intent = new Intent(this, Popup.class);
-        startActivity(intent);
+        Button btnJouer = findViewById(R.id.jouer);
+        Button btnClassement = findViewById(R.id.classement);
+        Button btnOptions = findViewById(R.id.options);
 
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
