@@ -22,6 +22,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private Fruit fruit;
     private String pseudo;
     private int score = 0;
+    private Paint paint;
     private static int hauteurEcran, largeurEcran;
 
     // création de la surface de dessin
@@ -32,6 +33,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fruit = new Fruit();
         serpent = new Serpent();
         pseudo = nom;
+        paint = new Paint();
     }
 
     public static int getHauteurEcran() {
@@ -54,6 +56,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         canvas.drawColor(Color.WHITE);  // on efface l'écran, en blanc
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
+        paint.setTextSize(25);
+        paint.setColor(Color.GRAY);
+        canvas.drawText("Score : " + score, 10, 50, paint);
     }
 
     //gestion du serpent

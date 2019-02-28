@@ -17,9 +17,7 @@ public class Jeu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         String nom = intent.getStringExtra("Pseudo");
-        setContentView(R.layout.jeu);
-        RelativeLayout r = findViewById(R.id.affichageJeu);
-        r.addView(new JeuVue(this, nom));
+        setContentView(new JeuVue(this, nom));
     }
 
 

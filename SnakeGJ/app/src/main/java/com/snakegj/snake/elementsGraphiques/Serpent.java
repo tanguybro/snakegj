@@ -73,7 +73,7 @@ public class Serpent extends ElementGraphique {
     }
 
     public boolean estAuBord() {
-        return tete.getX() + largeurAnneau > JeuVue.getLargeurEcran() || tete.getY() + hauteurAnneau > JeuVue.getHauteurEcran() || tete.getX() < 0 || tete.getY() < 0;
+        return tete.getX() > JeuVue.getLargeurEcran() || tete.getY() > JeuVue.getHauteurEcran() || tete.getX() + largeurAnneau < 0 || tete.getY() + hauteurAnneau < 0;
     }
 
     public void dessiner(Canvas canvas) {
