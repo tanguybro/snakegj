@@ -11,7 +11,7 @@ public class Serpent extends ElementGraphique {
     private Anneau tete;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
-    private static final int PAS = 50; //déplacement du snake
+    private static final int PAS = 80; //déplacement du snake
 
     public Serpent() {
         tete = new Anneau(100, 200);
@@ -43,31 +43,31 @@ public class Serpent extends ElementGraphique {
     }
 
     public void manger() {
-        tete.ajouterAnneau();
+        tete.ajouterAnneau(cap);
     }
 
     public void deplacer() {
 
         switch (cap) {
             case EST:
-                tete.avancer(PAS, 0);
+                tete.avancer(getX() + PAS, getY(), true);
                 if(estAuBord())
-                    tete.setX(0);
+                    tete.avancer(0, getY(), true);
                 break;
             case OUEST:
-                tete.avancer(-PAS, 0);
+                tete.avancer(getX() - PAS, getY(), true);
                 if(estAuBord())
-                    tete.setX(JeuVue.getLargeurEcran() - largeurAnneau);
+                    tete.avancer(JeuVue.getLargeurEcran() - largeurAnneau , getY(), true);
                 break;
             case SUD:
-                tete.avancer(0, PAS);
+                tete.avancer(getX(), getY() + PAS, true);
                 if(estAuBord())
-                    tete.setY(0);
+                    tete.avancer(getX(), 0, true);
                 break;
             case NORD:
-                tete.avancer(0, -PAS);
+                tete.avancer(getX(), getY() - PAS ,true);
                 if(estAuBord())
-                    tete.setY(JeuVue.getHauteurEcran() - hauteurAnneau);
+                    tete.avancer(getX(), JeuVue.getHauteurEcran() - hauteurAnneau, true);
                 break;
         }
     }

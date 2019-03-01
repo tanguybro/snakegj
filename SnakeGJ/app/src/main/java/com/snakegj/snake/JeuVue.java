@@ -68,7 +68,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
               serpent.manger();
               fruit.apparaitre();
               score++;
-             // affichageScore.setText("Score : " + score);
         }
     }
 

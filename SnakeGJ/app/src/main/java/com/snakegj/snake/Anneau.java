@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
 import com.snakegj.plan.Direction;
+import com.snakegj.snake.elementsGraphiques.Serpent;
 
 public class Anneau {
     private Anneau suivant;
@@ -28,13 +29,23 @@ public class Anneau {
         return y;
     }
 
-    public void avancer(int pasX, int pasY) {
-        this.x += pasX;
-        this.y += pasY;
+    public void avancer(int posX, int posY, boolean estTete) {
         if(suivant != null) {
-            x = suivant.x;
-            y = suivant.y;
-            suivant.avancer(pasX, pasY);
+            int tempX = suivant.x;
+            int tempY = suivant.y;
+            if(estTete) {
+                suivant.x = this.x;
+                suivant.y = this.y;
+            }
+            else {
+                suivant.x = posX;
+                suivant.y = posY;
+            }
+            suivant.avancer(tempX, tempY, false);
+        }
+        if(estTete) {
+            this.x = posX;
+            this.y = posY;
         }
     }
 
@@ -52,11 +63,24 @@ public class Anneau {
         }
     }
 
-    public void ajouterAnneau() {
+    public void ajouterAnneau(Direction cap) {
         if(suivant != null)
-            suivant.ajouterAnneau();
+            suivant.ajouterAnneau(cap);
         else {
-            suivant = new Anneau(x, y);
+            switch (cap) {
+                case EST:
+                    suivant = new Anneau(x - Serpent.getLargeurAnneau(), y);
+                    break;
+                case OUEST:
+                    suivant = new Anneau(x + Serpent.getLargeurAnneau(), y);
+                    break;
+                case SUD:
+                    suivant = new Anneau(x, y - Serpent.getHauteurAnneau());
+                    break;
+                case NORD:
+                    suivant = new Anneau(x, y + Serpent.getHauteurAnneau());
+                    break;
+            }
         }
     }
 
