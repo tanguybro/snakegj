@@ -46,6 +46,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/options" />
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btnFacebookCo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            />
+
     </LinearLayout>
 
 

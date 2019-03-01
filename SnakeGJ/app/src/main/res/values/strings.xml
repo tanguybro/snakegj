@@ -5,4 +5,7 @@
     <string name="classement">Classement</string>
     <string name="options">Options</string>
     <string name="score">Score : 0</string>
+    <string name="facebook_app_id">1769469433157976</string>
+    <string name="fb_login_protocol_scheme">fb1769469433157976</string>
+
 </resources>
