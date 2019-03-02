@@ -156,7 +156,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         hauteurEcran = h;
         largeurEcran = w;
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
-        fruit.redimensionner(getContext(), R.drawable.ball, 12, 15);
+        fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fruit.apparaitre();
     }
 }
