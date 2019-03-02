@@ -12,13 +12,18 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -32,8 +37,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 
 public class Menu extends AppCompatActivity {
 
@@ -44,11 +54,16 @@ public class Menu extends AppCompatActivity {
     private Button btnJouer;
     private Button btnClassement;
     private Button btnOptions;
+    private Button btnValiderPseudo;
+
+    private EditText chpPseudo;
+    private FrameLayout interfacePseudo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //A corriger
         FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 
@@ -58,15 +73,21 @@ public class Menu extends AppCompatActivity {
         btnJouer = findViewById(R.id.jouer);
         btnClassement = findViewById(R.id.classement);
         btnOptions = findViewById(R.id.options);
+        btnValiderPseudo = findViewById(R.id.btnValiderPseudo);
         btnFb = findViewById(R.id.btnFacebookCo);
+        chpPseudo = findViewById(R.id.chpPseudo);
+        interfacePseudo = findViewById(R.id.interfacePseudo);
 
         authen = FirebaseAuth.getInstance();
         cm = CallbackManager.Factory.create();
 
+        //Le pseudo ne doit pas contenir de caracteres speciaux (a faire)
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, Jeu.class));
+                Intent intent = new Intent(Menu.this, Jeu.class);
+                intent.putExtra("pseudo", chpPseudo.getText().toString());
+                startActivity(intent);
             }
         });
 
@@ -84,7 +105,14 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        btnFb.setReadPermissions("email");
+        btnValiderPseudo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Menu.this, "Votre pseudo : " + chpPseudo.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnFb.setReadPermissions(Arrays.asList("email", "user_friends"));
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,6 +129,8 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 infoIndent(loginResult.getAccessToken());
+                obtenirAmisFb(loginResult.getAccessToken());
+                cacherInterface();
             }
 
             @Override
@@ -131,11 +161,51 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+    private void obtenirAmisFb(AccessToken accessToken) {
+        GraphRequest request = GraphRequest.newMeRequest(
+                accessToken,
+                new GraphRequest.GraphJSONObjectCallback() {
+                    @Override
+                    public void onCompleted(
+                            final JSONObject object,
+                            GraphResponse response) {
+                        // Application code
+                        final JSONObject jsonObject = response.getJSONObject();
+                        String first_name = "";
+                        String last_name = "";
+                        try {
+                            first_name = jsonObject.getString("first_name");
+                            last_name =  jsonObject.getString("last_name");
+                            JSONObject friends = jsonObject.getJSONObject("friends");
+                            JSONArray data = friends.getJSONArray("data");
+                            JSONObject objectdata = data.getJSONObject(0);
+                            String friend_first_name = objectdata.getString("first_name");
+                            String friend_last_name = objectdata.getString("last_name");
+                            Log.d("Prenom", friend_first_name);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }}});
+
+        request.executeAsync();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         cm.onActivityResult(requestCode, resultCode, data);
     }
+
+    AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+        @Override
+        protected void onCurrentAccessTokenChanged(
+                AccessToken oldAccessToken,
+                AccessToken currentAccessToken) {
+
+            if (currentAccessToken == null){
+                apparaitreInterface();
+            }
+        }
+    };
 
     public void obtenirCleHash() {
         try {
@@ -149,5 +219,13 @@ public class Menu extends AppCompatActivity {
             e.printStackTrace();
         }
 
+    }
+
+    public void cacherInterface() {
+        interfacePseudo.setVisibility(View.GONE);
+    }
+
+    public void apparaitreInterface() {
+        interfacePseudo.setVisibility(View.VISIBLE);
     }
 }

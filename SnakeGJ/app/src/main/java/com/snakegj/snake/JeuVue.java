@@ -1,16 +1,18 @@
 package com.snakegj.snake;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.snakegj.PopupFinPartie;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
 import com.snakegj.snake.elementsGraphiques.Fruit;
@@ -21,7 +23,8 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private Serpent serpent;
     private Fruit fruit;
     private String pseudo;
-    private int score = 0;
+    private Context context;
+    private static int score;
     private Paint paint;
     private static int hauteurEcran, largeurEcran;
 
@@ -32,8 +35,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         jeuThread = new JeuThread(this);
         fruit = new Fruit();
         serpent = new Serpent();
+        score = 0;
         pseudo = nom;
         paint = new Paint();
+        this.context = context;
     }
 
     public static int getHauteurEcran() {
@@ -44,9 +49,20 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         return largeurEcran;
     }
 
+    public static int getScore() {
+        return score;
+    }
+
     public void finPartie() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.child(pseudo).setValue(score);
+        if(pseudo != null) {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+            database.child(pseudo).setValue(score);
+        }
+
+        //affiche la popup
+        Intent intent = new Intent(context, PopupFinPartie.class);
+        context.startActivity(intent);
+
     }
 
     //dessine un écran de jeu
@@ -69,6 +85,11 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
               fruit.apparaitre();
               score++;
         }
+        if(serpent.seTouche()) {
+            finPartie();
+            Log.d("touche", "coule");
+        }
+
     }
 
     public boolean estPasSurFruit() {  /** A CHANGER */

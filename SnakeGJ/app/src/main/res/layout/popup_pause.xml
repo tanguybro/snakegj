@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".PopupFinPartie">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Les gilets jaunes ont succombé"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            />
+
+        <TextView
+            android:id="@+id/scoreFinal"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Votre score : "
+            android:textSize="20sp"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="75dp"/>
+
+    </FrameLayout>
+
+
+
+    <Button
+        android:id="@+id/btnRejouer"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Rejouer"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/btnQuitter"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Quitter"
+        android:layout_gravity="center_horizontal|bottom"
+        />
+
+
+
+</FrameLayout>

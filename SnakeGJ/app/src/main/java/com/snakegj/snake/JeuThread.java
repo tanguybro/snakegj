@@ -7,7 +7,7 @@ public class JeuThread extends Thread {
 
         // si on veut X images en 1 seconde, soit en 1000 ms,
         // on doit en afficher une toutes les (1000 / X) ms.
-        private final static int FREQUENCE = 150 / IMG_PAR_SDE;
+        private final static int FREQUENCE = 400 / IMG_PAR_SDE;
 
         private final JeuVue view;
         private boolean running = false; // état du thread

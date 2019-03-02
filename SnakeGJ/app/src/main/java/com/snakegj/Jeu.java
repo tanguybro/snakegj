@@ -16,7 +16,7 @@ public class Jeu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        String nom = intent.getStringExtra("Pseudo");
+        String nom = intent.getStringExtra("pseudo");
         setContentView(new JeuVue(this, nom));
     }
 

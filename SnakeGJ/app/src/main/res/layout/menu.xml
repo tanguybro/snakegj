@@ -7,6 +7,8 @@
     android:background="@drawable/arc_de_triomphe"
     tools:context=".Menu">
 
+
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,6 +26,7 @@
             android:gravity="center"
             android:text="@string/snakegj"
             android:textSize="20sp"
+            android:layout_marginBottom="20dp"
             android:textColor="@android:color/white"/>
 
         <Button
@@ -47,11 +50,51 @@
             android:layout_gravity="center_horizontal"
             android:text="@string/options" />
 
+        <FrameLayout
+            android:id="@+id/interfacePseudo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/com_facebook_blue"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textSize="18sp"
+                android:text="Votre pseudo"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/chpPseudo"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:hint="Pseudo"
+                android:inputType="text"
+                android:textSize="18sp"
+                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                />
+
+            <Button
+                android:id="@+id/btnValiderPseudo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Valider"
+                android:layout_gravity="center"
+                android:layout_marginTop="55dp"/>
+
+        </FrameLayout>
+
+
+
         <com.facebook.login.widget.LoginButton
             android:id="@+id/btnFacebookCo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             />
 
     </LinearLayout>

@@ -29,6 +29,10 @@ public class Anneau {
         return y;
     }
 
+    public Anneau getSuivant() {
+        return suivant;
+    }
+
     public void avancer(int posX, int posY, boolean estTete) {
         if(suivant != null) {
             int tempX = suivant.x;
@@ -69,16 +73,16 @@ public class Anneau {
         else {
             switch (cap) {
                 case EST:
-                    suivant = new Anneau(x - Serpent.getLargeurAnneau(), y);
+                    suivant = new Anneau(x - 2*Serpent.getLargeurAnneau(), y);
                     break;
                 case OUEST:
-                    suivant = new Anneau(x + Serpent.getLargeurAnneau(), y);
+                    suivant = new Anneau(x + 2*Serpent.getLargeurAnneau(), y);
                     break;
                 case SUD:
-                    suivant = new Anneau(x, y - Serpent.getHauteurAnneau());
+                    suivant = new Anneau(x, y - 2*Serpent.getHauteurAnneau());
                     break;
                 case NORD:
-                    suivant = new Anneau(x, y + Serpent.getHauteurAnneau());
+                    suivant = new Anneau(x, y + 2*Serpent.getHauteurAnneau());
                     break;
             }
         }
