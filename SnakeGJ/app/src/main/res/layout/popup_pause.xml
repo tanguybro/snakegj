@@ -10,7 +10,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/colorPrimary">
+        android:background="@color/com_facebook_button_send_background_color_pressed">
 
         <TextView
             android:layout_width="wrap_content"
@@ -30,7 +30,8 @@
         android:layout_height="50dp"
         android:text="Reprendre"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="100dp"/>
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
 
     <Button
         android:id="@+id/btnRejouer"
@@ -38,7 +39,8 @@
         android:layout_height="50dp"
         android:text="Rejouer"
         android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="50dp"/>
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
 
     <Button
         android:id="@+id/btnQuitter"
@@ -46,6 +48,7 @@
         android:layout_height="50dp"
         android:text="Quitter"
         android:layout_gravity="center_horizontal|bottom"
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
         />
 
 

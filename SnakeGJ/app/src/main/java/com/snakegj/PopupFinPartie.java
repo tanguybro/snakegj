@@ -22,10 +22,12 @@ public class PopupFinPartie extends AppCompatActivity {
         Button btnQuitter = findViewById(R.id.btnQuitter);
 
 
+        //probleme ne trouve pas le pseudo et peut pas ecrire dans firebase
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PopupFinPartie.this, Jeu.class));
+                Intent intent = new Intent(PopupFinPartie.this, Jeu.class);
+                startActivity(intent);
                 finish();
             }
         });

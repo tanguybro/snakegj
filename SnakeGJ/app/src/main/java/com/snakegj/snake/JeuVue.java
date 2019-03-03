@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.snakegj.Menu;
 import com.snakegj.PopupFinPartie;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
@@ -57,8 +58,12 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void finPartie() {
-        if(pseudo != null) {
+        if(!Menu.estConnecte()) {
             DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+            database.child(pseudo).setValue(score);
+        }
+        else {
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("ClassementFB");
             database.child(pseudo).setValue(score);
         }
 
@@ -78,7 +83,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fruit.dessiner(canvas);
 
         paint.setTextSize(25);
-        paint.setColor(Color.GRAY);
+        paint.setColor(Color.WHITE);
         canvas.drawText("Score : " + score, 10, 50, paint);
     }
 

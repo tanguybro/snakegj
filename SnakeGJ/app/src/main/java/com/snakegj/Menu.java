@@ -24,6 +24,7 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -54,7 +55,6 @@ public class Menu extends AppCompatActivity {
     private Button btnJouer;
     private Button btnClassement;
     private Button btnOptions;
-    private Button btnValiderPseudo;
 
     private EditText chpPseudo;
     private FrameLayout interfacePseudo;
@@ -73,7 +73,6 @@ public class Menu extends AppCompatActivity {
         btnJouer = findViewById(R.id.jouer);
         btnClassement = findViewById(R.id.classement);
         btnOptions = findViewById(R.id.options);
-        btnValiderPseudo = findViewById(R.id.btnValiderPseudo);
         btnFb = findViewById(R.id.btnFacebookCo);
         chpPseudo = findViewById(R.id.chpPseudo);
         interfacePseudo = findViewById(R.id.interfacePseudo);
@@ -85,9 +84,18 @@ public class Menu extends AppCompatActivity {
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Menu.this, Jeu.class);
-                intent.putExtra("pseudo", chpPseudo.getText().toString());
-                startActivity(intent);
+                if(!chpPseudo.getText().toString().isEmpty() && !estConnecte()) {
+                    Intent intent = new Intent(Menu.this, Jeu.class);
+                    intent.putExtra("pseudo", chpPseudo.getText().toString());
+                    startActivity(intent);
+                }
+                else if(chpPseudo.getText().toString().isEmpty() && !estConnecte())
+                    Toast.makeText(Menu.this, "Veuillez entrer un pseudo", Toast.LENGTH_SHORT).show();
+                else {
+                    Intent intent = new Intent(Menu.this, Jeu.class);
+                    intent.putExtra("pseudoFB", Profile.getCurrentProfile().getFirstName() + " " + Profile.getCurrentProfile().getLastName());
+                    startActivity(intent);
+                }
             }
         });
 
@@ -105,13 +113,6 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        btnValiderPseudo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(Menu.this, "Votre pseudo : " + chpPseudo.getText().toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
         btnFb.setReadPermissions(Arrays.asList("email", "user_friends"));
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +121,10 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        obtenirCleHash();
+        if(AccessToken.getCurrentAccessToken() != null)
+            cacherInterface();
+
+        obtenirCleHash(); //pour app login facebook
 
     }
 
@@ -143,6 +147,11 @@ public class Menu extends AppCompatActivity {
 
             }
         });
+    }
+
+    public static boolean estConnecte() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
     }
 
     private void infoIndent(AccessToken accessToken) {

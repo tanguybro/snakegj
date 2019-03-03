@@ -31,36 +31,42 @@
 
         <Button
             android:id="@+id/jouer"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/jouer" />
+            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
+            android:text="@string/jouer"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/classement"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/classement" />
+            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
+            android:text="@string/classement"
+            android:textColor="@android:color/white"/>
 
         <Button
             android:id="@+id/options"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="@string/options" />
+            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
+            android:text="@string/options"
+            android:textColor="@android:color/white"/>
 
         <FrameLayout
             android:id="@+id/interfacePseudo"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@color/com_facebook_blue"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
             android:layout_marginTop="25dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textColor="@color/com_smart_login_code"
                 android:textSize="18sp"
                 android:text="Votre pseudo"
                 android:layout_gravity="center_horizontal"
@@ -75,16 +81,8 @@
                 android:hint="Pseudo"
                 android:inputType="text"
                 android:textSize="18sp"
-                android:textColor="@color/common_google_signin_btn_text_dark_default"
+                android:textColor="@android:color/black"
                 />
-
-            <Button
-                android:id="@+id/btnValiderPseudo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Valider"
-                android:layout_gravity="center"
-                android:layout_marginTop="55dp"/>
 
         </FrameLayout>
 
