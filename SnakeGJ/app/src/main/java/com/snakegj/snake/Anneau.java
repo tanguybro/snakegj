@@ -73,16 +73,16 @@ public class Anneau {
         else {
             switch (cap) {
                 case EST:
-                    suivant = new Anneau(x - 2*Serpent.getLargeurAnneau(), y);
+                    suivant = new Anneau(x - (x + Serpent.getLargeurAnneau()), y);
                     break;
                 case OUEST:
-                    suivant = new Anneau(x + 2*Serpent.getLargeurAnneau(), y);
+                    suivant = new Anneau(x * 2 + Serpent.getLargeurAnneau(), y);
                     break;
                 case SUD:
-                    suivant = new Anneau(x, y - 2*Serpent.getHauteurAnneau());
+                    suivant = new Anneau(x, y - (y + Serpent.getHauteurAnneau()));
                     break;
                 case NORD:
-                    suivant = new Anneau(x, y + 2*Serpent.getHauteurAnneau());
+                    suivant = new Anneau(x, y*2 + Serpent.getHauteurAnneau());
                     break;
             }
         }

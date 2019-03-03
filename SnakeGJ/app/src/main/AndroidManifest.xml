@@ -37,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".PopupFinPartie" />
+        <activity android:name=".PopupPause" />
         <activity android:name=".Options" />
         <activity android:name=".Jeu" />
         <activity android:name=".Menu">

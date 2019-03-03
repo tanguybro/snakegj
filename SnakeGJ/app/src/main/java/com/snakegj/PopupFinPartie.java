@@ -17,10 +17,9 @@ public class PopupFinPartie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popup_fin_partie);
 
-
+        TextView score = findViewById(R.id.scoreFinal);
         Button btnRejouer = findViewById(R.id.btnRejouer);
         Button btnQuitter = findViewById(R.id.btnQuitter);
-        Button btnReprendre = findViewById(R.id.btnReprendre);
 
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {

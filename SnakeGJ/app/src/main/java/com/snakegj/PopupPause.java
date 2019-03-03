@@ -6,20 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.snakegj.snake.JeuVue;
 
 public class PopupPause extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.popup_fin_partie);
+        setContentView(R.layout.popup_pause);
 
-        TextView score = findViewById(R.id.scoreFinal);
         Button btnRejouer = findViewById(R.id.btnRejouer);
         Button btnQuitter = findViewById(R.id.btnQuitter);
+        Button btnReprendre = findViewById(R.id.btnReprendre);
 
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {
@@ -38,7 +35,12 @@ public class PopupPause extends AppCompatActivity {
             }
         });
 
-        score.setText("Votre score : " + JeuVue.getScore());
+        btnReprendre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -48,4 +50,5 @@ public class PopupPause extends AppCompatActivity {
 
         getWindow().setLayout((int) (largeur * 0.6), (int) (hauteur * 0.6));
     }
+
 }
