@@ -15,6 +15,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.snakegj.PopupFinPartie;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
+import com.snakegj.snake.elementsGraphiques.FondJeu;
 import com.snakegj.snake.elementsGraphiques.Fruit;
 import com.snakegj.snake.elementsGraphiques.Serpent;
 
@@ -22,6 +23,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
     private Serpent serpent;
     private Fruit fruit;
+    private FondJeu fondJeu;
     private String pseudo;
     private Context context;
     private static int score;
@@ -35,6 +37,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         jeuThread = new JeuThread(this);
         fruit = new Fruit();
         serpent = new Serpent();
+        fondJeu = new FondJeu();
         score = 0;
         pseudo = nom;
         paint = new Paint();
@@ -70,8 +73,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         if(canvas == null)
             return;
         canvas.drawColor(Color.WHITE);  // on efface l'écran, en blanc
+        fondJeu.dessiner(canvas);
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
+
         paint.setTextSize(25);
         paint.setColor(Color.GRAY);
         canvas.drawText("Score : " + score, 10, 50, paint);
@@ -157,6 +162,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         largeurEcran = w;
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
+        fondJeu.redimensionner(getContext(), R.drawable.fond, 1, 1);
         fruit.apparaitre();
     }
 }
