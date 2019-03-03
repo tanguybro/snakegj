@@ -1,8 +1,10 @@
 package com.snakegj;
 
 import android.os.Bundle;
+import android.se.omapi.Session;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,11 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
+import com.facebook.Profile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,8 +24,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ClassementFacebook extends Fragment {
 
@@ -31,6 +43,8 @@ public class ClassementFacebook extends Fragment {
         View rootView = inflater.inflate(R.layout.classement_facebook, container, false);
         table = rootView.findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
+        if(Menu.estConnecte())
+            obtenirAmisFb(AccessToken.getCurrentAccessToken());
         afficherClassement();
 
         return rootView;
@@ -39,7 +53,7 @@ public class ClassementFacebook extends Fragment {
     public void afficherClassement() {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("ClassementFB");
         table.addView(entete);
-
+        final List<String> amis = obtenirAmisFb(AccessToken.getCurrentAccessToken());
         //on trie dans l'ordre croissant et on recupere les 10 derniers scores
         Query q = database.orderByValue().limitToLast(10);
         q.addValueEventListener(new ValueEventListener() {
@@ -50,8 +64,14 @@ public class ClassementFacebook extends Fragment {
                     TableRow ligne = (TableRow) getLayoutInflater().inflate(R.layout.tableau_ligne, table, false);
                     TextView pseudo = ligne.findViewById(R.id.pseudo);
                     TextView score = ligne.findViewById(R.id.score);
-                    pseudo.setText(d.getKey());
-                    score.setText(String.valueOf(d.getValue()));
+                    if(estUnAmiFB(d.getKey(), amis) || (d.getKey().contains(Profile.getCurrentProfile().getName()))) {
+                        pseudo.setText(d.getKey());
+                        score.setText(String.valueOf(d.getValue()));
+                    }
+                    else {
+                        pseudo.setText("");
+                        score.setText("");
+                    }
                     vues.add(ligne);
                 }
 
@@ -69,5 +89,41 @@ public class ClassementFacebook extends Fragment {
 
     }
 
+    //récupère la liste des amis qui ont joué au jeu
+    public List<String> obtenirAmisFb(AccessToken accessToken) {
+        final List<String> listeAmis = new ArrayList<String>();
+        new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends", null, HttpMethod.GET, new GraphRequest.Callback() {
+            public void onCompleted(GraphResponse response) {
+
+                Log.e("Liste amis: 1", response.toString());
+                try {
+                    JSONObject responseObject = response.getJSONObject();
+                    JSONArray dataArray = responseObject.getJSONArray("data"); //recupere l'id et le nom des amis dans data
+
+                    for (int i = 0; i < dataArray.length(); i++) {
+                        JSONObject dataObject = dataArray.getJSONObject(i);
+                        String fbId = dataObject.getString("id");
+                        String fbNom = dataObject.getString("name");
+                        Log.e("FbId", fbId);
+                        Log.e("FbNom", fbNom);
+                        listeAmis.add(fbId);
+                    }
+                    Log.e("fbListeAmis", listeAmis.toString());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).executeAsync();
+        return listeAmis;
+    }
+
+    public boolean estUnAmiFB(String nom, List<String> amis) {
+        boolean verif = false;
+        for(String s : amis) {
+            if(s.contains(nom))
+                verif = true;
+        }
+        return verif;
+    }
 
 }
