@@ -22,8 +22,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
@@ -35,12 +33,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -84,12 +76,12 @@ public class Menu extends AppCompatActivity {
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!chpPseudo.getText().toString().isEmpty() && !estConnecte()) {
+                if(!chpPseudo.getText().toString().isEmpty() && !estConnecteFB()) {
                     Intent intent = new Intent(Menu.this, Jeu.class);
                     intent.putExtra("pseudo", chpPseudo.getText().toString());
                     startActivity(intent);
                 }
-                else if(chpPseudo.getText().toString().isEmpty() && !estConnecte())
+                else if(chpPseudo.getText().toString().isEmpty() && !estConnecteFB())
                     Toast.makeText(Menu.this, "Veuillez entrer un pseudo", Toast.LENGTH_SHORT).show();
                 else {
                     Intent intent = new Intent(Menu.this, Jeu.class);
@@ -113,6 +105,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        //demande des autorisations à l'utilisateur : consentement obligatoire sinon classement fb non fonctionnel
         btnFb.setReadPermissions(Arrays.asList("email", "user_friends"));
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +117,7 @@ public class Menu extends AppCompatActivity {
         if(AccessToken.getCurrentAccessToken() != null)
             cacherInterface();
 
-        obtenirCleHash(); //pour app login facebook
+        obtenirCleHash(); //pour lier app et login facebook
 
     }
 
@@ -148,12 +141,13 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    public static boolean estConnecte() {
+    public static boolean estConnecteFB() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;
     }
 
     private void infoIndent(AccessToken accessToken) {
+        //recupere le type d'authentification (fb, google, twitter...)
         AuthCredential c = FacebookAuthProvider.getCredential(accessToken.getToken());
         authen.signInWithCredential(c).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -169,6 +163,7 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+    //Lorsqu'il y a une action avec le login
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

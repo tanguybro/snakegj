@@ -1,7 +1,6 @@
 package com.snakegj;
 
 import android.os.Bundle;
-import android.se.omapi.Session;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -43,7 +42,7 @@ public class ClassementFacebook extends Fragment {
         View rootView = inflater.inflate(R.layout.classement_facebook, container, false);
         table = rootView.findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
-        if(Menu.estConnecte())
+        if(Menu.estConnecteFB())
             obtenirAmisFb(AccessToken.getCurrentAccessToken());
         afficherClassement();
 
@@ -60,7 +59,7 @@ public class ClassementFacebook extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<View> vues = new ArrayList<>();
-                for(DataSnapshot d : dataSnapshot.getChildren()) {
+                for(DataSnapshot d : dataSnapshot.getChildren()) { //parcourt les noms dans le classement fb
                     TableRow ligne = (TableRow) getLayoutInflater().inflate(R.layout.tableau_ligne, table, false);
                     TextView pseudo = ligne.findViewById(R.id.pseudo);
                     TextView score = ligne.findViewById(R.id.score);

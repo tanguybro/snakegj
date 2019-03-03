@@ -58,7 +58,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void finPartie() {
-        if(!Menu.estConnecte()) {
+        if(!Menu.estConnecteFB()) {
             DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
             database.child(pseudo).setValue(score);
         }
