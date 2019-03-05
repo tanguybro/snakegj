@@ -12,11 +12,7 @@ public class Anneau {
     private int x, y;
 
     public Anneau(int x, int y) {
-        this(null, x, y);
-    }
-
-    public Anneau(Anneau a, int x, int y) {
-        suivant = a;
+        suivant = null;
         this.x = x;
         this.y = y;
     }
@@ -33,7 +29,7 @@ public class Anneau {
         return suivant;
     }
 
-    public void avancer(int posX, int posY, boolean estTete) {
+    public void avancerA(int posX, int posY, boolean estTete) {
         if(suivant != null) {
             int tempX = suivant.x;
             int tempY = suivant.y;
@@ -45,25 +41,11 @@ public class Anneau {
                 suivant.x = posX;
                 suivant.y = posY;
             }
-            suivant.avancer(tempX, tempY, false);
+            suivant.avancerA(tempX, tempY, false);
         }
         if(estTete) {
             this.x = posX;
             this.y = posY;
-        }
-    }
-
-    public void setX(int x) {
-        this.x = x;
-        if(suivant != null) {
-            suivant.setX(x);
-        }
-    }
-
-    public void setY(int y) {
-        this.y = y;
-        if(suivant != null) {
-            suivant.setY(y);
         }
     }
 
@@ -73,16 +55,16 @@ public class Anneau {
         else {
             switch (cap) {
                 case EST:
-                    suivant = new Anneau(x - (x + Serpent.getLargeurAnneau()), y);
+                    suivant = new Anneau(x - Serpent.getLargeurAnneau(), y);
                     break;
                 case OUEST:
-                    suivant = new Anneau(x * 2 + Serpent.getLargeurAnneau(), y);
+                    suivant = new Anneau(x + Serpent.getLargeurAnneau(), y);
                     break;
                 case SUD:
-                    suivant = new Anneau(x, y - (y + Serpent.getHauteurAnneau()));
+                    suivant = new Anneau(x, y - Serpent.getHauteurAnneau());
                     break;
                 case NORD:
-                    suivant = new Anneau(x, y*2 + Serpent.getHauteurAnneau());
+                    suivant = new Anneau(x, y + Serpent.getHauteurAnneau());
                     break;
             }
         }

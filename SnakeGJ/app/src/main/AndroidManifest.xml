@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:largeHeap="true">
         <activity
-            android:name=".Classement"
+            android:name=".classement.Classement"
             android:label="@string/title_activity_classement"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
@@ -37,8 +37,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".PopupFinPartie" />
-        <activity android:name=".PopupPause" />
+        <activity android:name=".popup.PopupFinPartie" />
+        <activity android:name=".popup.PopupPause" />
         <activity android:name=".Options" />
         <activity android:name=".Jeu" />
         <activity android:name=".Menu">

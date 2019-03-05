@@ -17,11 +17,9 @@ public class JeuThread extends Thread {
             this.view = view;
         }
 
-
         public void setRunning(boolean run) {
             running = run;
         }
-
 
         @Override
         public void run()

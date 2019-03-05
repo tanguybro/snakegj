@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.popup;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.snakegj.Jeu;
+import com.snakegj.Menu;
+import com.snakegj.R;
 import com.snakegj.snake.JeuVue;
 
 public class PopupFinPartie extends AppCompatActivity {
@@ -22,7 +25,7 @@ public class PopupFinPartie extends AppCompatActivity {
         Button btnQuitter = findViewById(R.id.btnQuitter);
 
 
-        //probleme ne trouve pas le pseudo et peut pas ecrire dans firebase
+        /** probleme ne trouve pas le pseudo et peut pas ecrire dans firebase */
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,11 +3,9 @@ package com.snakegj;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.RelativeLayout;
 
-import com.google.firebase.FirebaseApp;
+import com.snakegj.popup.PopupPause;
 import com.snakegj.snake.JeuVue;
 
 
@@ -34,7 +32,6 @@ public class Jeu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
 
         if(id == R.id.action_pause) {
@@ -43,8 +40,6 @@ public class Jeu extends AppCompatActivity {
             onPause();
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -22,7 +22,7 @@ public abstract class ElementGraphique {
     }
 
     public void redimensionner(Context c, int ressource, int proportionLargeur, int proportionHauteur) {
-        modifierDimensions(JeuVue.getLargeurEcran() / proportionLargeur, JeuVue.getHauteurEcran() / proportionHauteur);
-        setImage(c, ressource, JeuVue.getLargeurEcran() / proportionLargeur, JeuVue.getHauteurEcran() / proportionHauteur);
+        modifierDimensions(FondJeu.getLargeur() / proportionLargeur, FondJeu.getHauteur() / proportionHauteur);
+        setImage(c, ressource, FondJeu.getLargeur() / proportionLargeur, FondJeu.getHauteur() / proportionHauteur);
     }
 }

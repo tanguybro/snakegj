@@ -10,8 +10,8 @@ public class Fruit extends ElementGraphique {
     private int hauteur, largeur;
 
     public Fruit() {
-        x = 0;
-        y = 0;
+        x = 100;
+        y = 100;
     }
 
     public int getX() {
@@ -31,8 +31,8 @@ public class Fruit extends ElementGraphique {
     }
 
     public void apparaitre() {
-        x = (int) (Math.random() * (JeuVue.getLargeurEcran()) - 25);
-        y = (int) (Math.random() * (JeuVue.getHauteurEcran()) - 25);
+        x = (int) (Math.random() * (FondJeu.getLargeur()) - 25);
+        y = (int) (Math.random() * (FondJeu.getHauteur()) - 25);
     }
 
     public void dessiner(Canvas canvas) {

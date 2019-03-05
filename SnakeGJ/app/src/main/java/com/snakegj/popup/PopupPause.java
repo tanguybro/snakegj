@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.popup;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+
+import com.snakegj.Jeu;
+import com.snakegj.Menu;
+import com.snakegj.R;
 
 public class PopupPause extends AppCompatActivity {
 

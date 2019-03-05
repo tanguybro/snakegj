@@ -11,14 +11,12 @@ import com.snakegj.snake.elementsGraphiques.ElementGraphique;
 public class Serpent extends ElementGraphique {
     private Anneau tete;
     private Direction cap;
-    private boolean touchee; //Provisoire
     private static int hauteurAnneau, largeurAnneau;
     private static final int PAS = 85; //déplacement du snake
 
     public Serpent() {
-        tete = new Anneau(100, 200);
+        tete = new Anneau(100, 200); /** Debut aleatoire ? */
         cap = Direction.EST;
-        touchee = false;
     }
 
     public static int getHauteurAnneau() {
@@ -53,52 +51,46 @@ public class Serpent extends ElementGraphique {
 
         switch (cap) {
             case EST:
-                tete.avancer(getX() + PAS, getY(), true);
+                tete.avancerA(getX() + PAS, getY(), true);
                 if(estAuBord())
-                    tete.avancer(0, getY(), true);
+                    tete.avancerA(0, getY(), true);
                 break;
             case OUEST:
-                tete.avancer(getX() - PAS, getY(), true);
+                tete.avancerA(getX() - PAS, getY(), true);
                 if(estAuBord())
-                    tete.avancer(JeuVue.getLargeurEcran() - largeurAnneau , getY(), true);
+                    tete.avancerA(FondJeu.getLargeur() - largeurAnneau , getY(), true);
                 break;
             case SUD:
-                tete.avancer(getX(), getY() + PAS, true);
+                tete.avancerA(getX(), getY() + PAS, true);
                 if(estAuBord())
-                    tete.avancer(getX(), 0, true);
+                    tete.avancerA(getX(), 0, true);
                 break;
             case NORD:
-                tete.avancer(getX(), getY() - PAS ,true);
+                tete.avancerA(getX(), getY() - PAS ,true);
                 if(estAuBord())
-                    tete.avancer(getX(), JeuVue.getHauteurEcran() - hauteurAnneau, true);
+                    tete.avancerA(getX(), FondJeu.getHauteur() - hauteurAnneau, true);
                 break;
         }
     }
 
     public boolean estAuBord() {
-        return tete.getX() > JeuVue.getLargeurEcran() || tete.getY() > JeuVue.getHauteurEcran() || tete.getX() + largeurAnneau < 0 || tete.getY() + hauteurAnneau < 0;
+        return tete.getX() > FondJeu.getLargeur() || tete.getY() > FondJeu.getHauteur() || tete.getX() + largeurAnneau < 0 || tete.getY() + hauteurAnneau < 0;
     }
 
     public boolean seTouche() {
-        parcoursSerpent(tete.getSuivant());
-        Log.d("Mort", "" + touchee);
-        return touchee;
-    }
-
-    private void parcoursSerpent(Anneau a) {
+        Anneau a = tete.getSuivant();
         if(a == null)
-            return;
-        if(!anneauTouche(a))
-            touchee = true;
-        parcoursSerpent(a.getSuivant());
+            return false;
+        while(a.getSuivant() != null) {
+            if(teteTouche(a))
+                return true;
+            a = a.getSuivant();
+        }
+        return false;
     }
 
-    //nom a changer
-    private boolean anneauTouche(Anneau a) {
-            return (a.getX() >= tete.getX() + largeurAnneau)
-                    || (a.getX() + largeurAnneau <= tete.getX())
-                    || (a.getY() >= tete.getY() + hauteurAnneau)
-                    || (a.getY() + hauteurAnneau <= tete.getY());
+    private boolean teteTouche(Anneau a) {
+        return (tete.getX() == a.getX() && tete.getY() == a.getY());
     }
 
     public void dessiner(Canvas canvas) {

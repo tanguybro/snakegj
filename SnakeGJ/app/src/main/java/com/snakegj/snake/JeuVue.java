@@ -13,7 +13,7 @@ import android.view.SurfaceView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.snakegj.Menu;
-import com.snakegj.PopupFinPartie;
+import com.snakegj.popup.PopupFinPartie;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
 import com.snakegj.snake.elementsGraphiques.FondJeu;
@@ -29,7 +29,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private Context context;
     private static int score;
     private Paint paint;
-    private static int hauteurEcran, largeurEcran;
 
     // création de la surface de dessin
     public JeuVue(Context context, String nom) {
@@ -42,15 +41,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         score = 0;
         pseudo = nom;
         paint = new Paint();
+        paint.setTextSize(25);
+        paint.setColor(Color.WHITE);
         this.context = context;
-    }
-
-    public static int getHauteurEcran() {
-        return hauteurEcran;
-    }
-
-    public static int getLargeurEcran() {
-        return largeurEcran;
     }
 
     public static int getScore() {
@@ -70,7 +63,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         //affiche la popup
         Intent intent = new Intent(context, PopupFinPartie.class);
         context.startActivity(intent);
-
     }
 
     //dessine un écran de jeu
@@ -82,8 +74,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
 
-        paint.setTextSize(25);
-        paint.setColor(Color.WHITE);
         canvas.drawText("Score : " + score, 10, 50, paint);
     }
 
@@ -99,10 +89,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             finPartie();
             Log.d("touche", "coule");
         }
-
     }
 
-    public boolean estPasSurFruit() {  /** A CHANGER */
+    public boolean estPasSurFruit() {  /** A CHANGER INVERSER CONDITIONS POUR MEILLEUR NOM */
         return fruit.getX() >= serpent.getX() + serpent.getLargeurAnneau()
                 || fruit.getX() + fruit.getLargeur() <= serpent.getX()
                 || fruit.getY() >= serpent.getY() + serpent.getHauteurAnneau()
@@ -163,11 +152,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     // nous obtenons ici la largeur/hauteur de l'écran en pixels
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
-        hauteurEcran = h;
-        largeurEcran = w;
+        fondJeu.modifierDimensions(w,h);
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fondJeu.redimensionner(getContext(), R.drawable.fond, 1, 1);
-        fruit.apparaitre();
+       // fruit.apparaitre(); fait que le fruit bouge si on fait pause et reprendre donc pb
     }
 }
