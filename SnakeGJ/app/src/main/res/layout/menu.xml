@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,9 +25,37 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/snakegj"
-            android:textSize="20sp"
+            android:textSize="30sp"
             android:layout_marginBottom="20dp"
             android:textColor="@android:color/white"/>
+
+        <FrameLayout
+            android:id="@+id/interfacePseudo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
+
+            <EditText
+                android:id="@+id/chpPseudo"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:hint="Pseudo"
+                android:inputType="text"
+                android:textSize="18sp"
+                android:textColor="@android:color/black"
+                />
+
+        </FrameLayout>
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/btnFacebookCo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
 
         <Button
             android:id="@+id/jouer"
@@ -55,45 +83,6 @@
             android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
             android:text="@string/options"
             android:textColor="@android:color/white"/>
-
-        <FrameLayout
-            android:id="@+id/interfacePseudo"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-            android:layout_marginTop="25dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:textColor="@color/com_smart_login_code"
-                android:textSize="18sp"
-                android:text="Votre pseudo"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="10dp"/>
-
-            <EditText
-                android:id="@+id/chpPseudo"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:hint="Pseudo"
-                android:inputType="text"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                />
-
-        </FrameLayout>
-
-
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/btnFacebookCo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            />
 
     </LinearLayout>
 

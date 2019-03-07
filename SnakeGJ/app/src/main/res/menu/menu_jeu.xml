@@ -4,8 +4,9 @@
     tools:context="com.snakegj.Jeu">
     <item
         android:id="@+id/action_pause"
-        android:orderInCategory="100"
+        android:orderInCategory="3"
         android:title="Pause"
         android:icon="@drawable/ic_pause"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
+
 </menu>

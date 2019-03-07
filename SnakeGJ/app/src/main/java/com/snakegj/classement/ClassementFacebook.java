@@ -45,18 +45,22 @@ public class ClassementFacebook extends Fragment {
         table = rootView.findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
         if(Menu.estConnecteFB())
-            obtenirAmisFb(AccessToken.getCurrentAccessToken());
-        afficherClassement();
-
+            afficherClassement(obtenirAmisFb());
+        else {
+            TextView t = rootView.findViewById(R.id.msgErreur);
+            t.setText("Vous n'êtes pas connecté à Facebook");
+        }
         return rootView;
     }
 
-    public void afficherClassement() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("ClassementFB");
+    public void afficherClassement(List<String> listeAmis) {
+        if(listeAmis == null)
+            return;
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         table.addView(entete);
-        final List<String> amis = obtenirAmisFb(AccessToken.getCurrentAccessToken());
+        final List<String> amis = listeAmis;
         //on trie dans l'ordre croissant et on recupere les 10 derniers scores
-        Query q = database.orderByValue().limitToLast(10);
+        Query q = database.orderByValue();//.limitToLast(10);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -91,12 +95,12 @@ public class ClassementFacebook extends Fragment {
     }
 
     //récupère la liste des amis qui ont joué au jeu
-    public List<String> obtenirAmisFb(AccessToken accessToken) {
-        final List<String> listeAmis = new ArrayList<String>();
+    public List<String> obtenirAmisFb() {
+        final List<String> listeAmis = new ArrayList<>();
         new GraphRequest(AccessToken.getCurrentAccessToken(), "/me/friends", null, HttpMethod.GET, new GraphRequest.Callback() {
             public void onCompleted(GraphResponse response) {
 
-                Log.e("Liste amis: 1", response.toString());
+                Log.e("Liste amis: 1", response.toString()); /** errorMessage: An active access token must be used to query information about the current user */
                 try {
                     JSONObject responseObject = response.getJSONObject();
                     JSONArray dataArray = responseObject.getJSONArray("data"); //recupere l'id et le nom des amis dans data
@@ -119,12 +123,11 @@ public class ClassementFacebook extends Fragment {
     }
 
     public boolean estUnAmiFB(String nom, List<String> amis) {
-        boolean verif = false;
         for(String s : amis) {
             if(s.contains(nom))
-                verif = true;
+                return true;
         }
-        return verif;
+        return false;
     }
 
 }

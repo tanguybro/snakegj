@@ -1,5 +1,8 @@
 package com.snakegj.classement;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -32,8 +35,12 @@ public class ClassementMondial extends Fragment {
         View rootView = inflater.inflate(R.layout.classement_mondial, container, false);
         table = rootView.findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
-        afficherClassement();
-
+        if(estConnecteAInternet())
+             afficherClassement();
+        else {
+            TextView t = rootView.findViewById(R.id.msgErreur);
+            t.setText("Vous n'êtes pas connecté à Internet");
+        }
         return rootView;
     }
 
@@ -68,5 +75,10 @@ public class ClassementMondial extends Fragment {
             }
         });
 
+    }
+
+    private boolean estConnecteAInternet() {
+        NetworkInfo network = ((ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        return !(network == null || !network.isConnected());
     }
 }

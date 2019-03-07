@@ -5,17 +5,22 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.snakegj.Menu;
-import com.snakegj.popup.PopupFinPartie;
+import com.snakegj.Jeu;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
+import com.snakegj.popup.PopupFinPartie;
 import com.snakegj.snake.elementsGraphiques.FondJeu;
 import com.snakegj.snake.elementsGraphiques.Fruit;
 import com.snakegj.snake.elementsGraphiques.Serpent;
@@ -27,11 +32,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private FondJeu fondJeu;
     private String pseudo;
     private Context context;
+    private Jeu jeu;
     private static int score;
-    private Paint paint;
 
-    // création de la surface de dessin
-    public JeuVue(Context context, String nom) {
+    public JeuVue(Context context, Jeu j, String nom) {
         super(context);
         getHolder().addCallback(this);
         jeuThread = new JeuThread(this);
@@ -40,9 +44,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fondJeu = new FondJeu();
         score = 0;
         pseudo = nom;
-        paint = new Paint();
-        paint.setTextSize(25);
-        paint.setColor(Color.WHITE);
+        jeu = j;
         this.context = context;
     }
 
@@ -51,17 +53,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void finPartie() {
-        if(!Menu.estConnecteFB()) {
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-            database.child(pseudo).setValue(score);
-        }
-        else {
-            DatabaseReference database = FirebaseDatabase.getInstance().getReference("ClassementFB");
-            database.child(pseudo).setValue(score);
-        }
-
-        //affiche la popup
-        Intent intent = new Intent(context, PopupFinPartie.class);
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        database.child(pseudo).setValue(score);
+        Intent intent = new Intent(context, PopupFinPartie.class); //affiche la popup
         context.startActivity(intent);
     }
 
@@ -73,8 +67,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fondJeu.dessiner(canvas);
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
-
-        canvas.drawText("Score : " + score, 10, 50, paint);
     }
 
     //gestion du serpent
@@ -84,11 +76,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
               serpent.manger();
               fruit.apparaitre();
               score++;
+              jeu.modifScore("Score : " + score);
         }
-        if(serpent.seTouche()) {
+        if(serpent.seTouche())
             finPartie();
-            Log.d("touche", "coule");
-        }
     }
 
     public boolean estPasSurFruit() {  /** A CHANGER INVERSER CONDITIONS POUR MEILLEUR NOM */
