@@ -56,7 +56,7 @@ public class ClassementFacebook extends Fragment {
     public void afficherClassement(List<String> listeAmis) {
         if(listeAmis == null)
             return;
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("ClassementFB");
         table.addView(entete);
         final List<String> amis = listeAmis;
         //on trie dans l'ordre croissant et on recupere les 10 derniers scores
