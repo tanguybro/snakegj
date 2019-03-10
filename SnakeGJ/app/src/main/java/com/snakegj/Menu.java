@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +41,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
+import static java.security.AccessController.getContext;
+
 public class Menu extends AppCompatActivity {
 
     // Afficher meilleure score dans la toolbar de jeu
@@ -62,9 +66,15 @@ public class Menu extends AppCompatActivity {
     private EditText chpPseudo;
     private FrameLayout interfacePseudo;
 
+    private static MediaPlayer player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        player = MediaPlayer.create(this, R.raw.musique);
+        player.setLooping(true);
+        player.start();
 
         //A corriger
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -167,7 +177,6 @@ public class Menu extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
-                String email = authResult.getUser().getEmail();
                 Toast.makeText(Menu.this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
             }
         });
@@ -213,4 +222,18 @@ public class Menu extends AppCompatActivity {
     public void apparaitreInterface() {
         interfacePseudo.setVisibility(View.VISIBLE);
     }
+
+    public static MediaPlayer getPlayer() {
+        return player;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(player != null) {
+            player.release();
+            player = null;
+        }
+    }
+
 }
