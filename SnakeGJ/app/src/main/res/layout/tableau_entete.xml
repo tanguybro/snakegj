@@ -8,17 +8,21 @@
     <TextView
         android:id="@+id/pseudo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Pseudo"
         android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@color/com_facebook_button_send_background_color_pressed"
         android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Score"
         android:gravity="center"
+        android:textColor="@android:color/white"
+        android:background="@color/com_facebook_button_send_background_color_pressed"
         android:layout_weight="1"/>
 
 </TableRow>

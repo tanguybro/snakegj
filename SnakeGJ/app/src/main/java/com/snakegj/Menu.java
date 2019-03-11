@@ -127,7 +127,7 @@ public class Menu extends AppCompatActivity {
         });
 
         //demande des autorisations à l'utilisateur : consentement obligatoire sinon classement fb non fonctionnel
-        btnFb.setReadPermissions(Arrays.asList("email", "user_friends"));
+        btnFb.setReadPermissions(Arrays.asList("email"));
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

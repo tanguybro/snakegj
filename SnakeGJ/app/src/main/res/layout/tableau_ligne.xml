@@ -9,17 +9,24 @@
     <TextView
         android:id="@+id/pseudo"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Pseudo"
         android:gravity="center"
+        android:background="@android:color/white"
+        android:layout_marginRight="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/score"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:text="Score"
         android:gravity="center"
+        android:background="@android:color/white"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
         android:layout_weight="1"/>
 
 </TableRow>
