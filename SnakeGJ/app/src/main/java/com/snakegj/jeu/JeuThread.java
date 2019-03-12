@@ -1,8 +1,7 @@
-package com.snakegj.snake;
+package com.snakegj.jeu;
 import android.graphics.Canvas;
 
 public class JeuThread extends Thread {
-
         private final static int IMG_PAR_SDE = 1;
 
         // si on veut X images en 1 seconde, soit en 1000 ms,
@@ -11,7 +10,6 @@ public class JeuThread extends Thread {
 
         private final JeuVue view;
         private boolean running = false; // état du thread
-
 
         public JeuThread(JeuVue view) {
             this.view = view;
@@ -22,13 +20,11 @@ public class JeuThread extends Thread {
         }
 
         @Override
-        public void run()
-        {
+        public void run() {
             long startTime;
             long sleepTime;
 
-            while (running)
-            {
+            while (running) {
                 startTime = System.currentTimeMillis();
 
                 // mise à jour du déplacement du snake
@@ -43,14 +39,13 @@ public class JeuThread extends Thread {
                     c = view.getHolder().lockCanvas();
                     synchronized (view.getHolder()) {view.doDraw(c);}
                 }
-                finally
-                {
+                finally {
                     if (c != null) {view.getHolder().unlockCanvasAndPost(c);}
                 }
 
                 // Calcul du temps de pause, et pause si nécessaire
                 // afin de ne réaliser le travail ci-dessus que X fois par secondes
-                sleepTime = FREQUENCE-(System.currentTimeMillis() - startTime);
+                sleepTime = FREQUENCE - (System.currentTimeMillis() - startTime);
                 try {
                     if (sleepTime >= 0) {sleep(sleepTime);}
                 }

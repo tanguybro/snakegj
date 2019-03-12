@@ -1,11 +1,18 @@
-package com.snakegj.classement;
+package com.snakegj.pages;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,32 +31,29 @@ import com.snakegj.R;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ClassementMondial extends Fragment {
-
+public class Classement extends AppCompatActivity {
     private TableLayout table;
     private TableRow entete;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.classement_mondial, container, false);
-        table = rootView.findViewById(R.id.tableScores);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.classement);
+        table = findViewById(R.id.tableScores);
         entete = (TableRow) getLayoutInflater().inflate(R.layout.tableau_entete, null);
         if(estConnecteAInternet())
-             afficherClassement();
+            afficherClassement();
         else {
-            TextView t = rootView.findViewById(R.id.msgErreur);
+            TextView t = findViewById(R.id.msgErreur);
             t.setText("Vous n'êtes pas connecté à Internet");
         }
-        return rootView;
     }
 
-    public void afficherClassement() {
+    private void afficherClassement() {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         table.addView(entete);
 
-        //on trie dans l'ordre croissant et on recupere les 10 derniers scores
-        Query q = database.orderByValue().limitToLast(10);
+        Query q = database.orderByValue().limitToLast(10); //on trie dans l'ordre croissant et on recupere les 10 derniers scores
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -62,7 +66,6 @@ public class ClassementMondial extends Fragment {
                     score.setText(String.valueOf(d.getValue()));
                     vues.add(ligne);
                 }
-
                 Collections.reverse(vues);
 
                 for(View v : vues)
@@ -71,14 +74,13 @@ public class ClassementMondial extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
-
     }
 
     private boolean estConnecteAInternet() {
-        NetworkInfo network = ((ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
+        NetworkInfo network = ((ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
         return !(network == null || !network.isConnected());
     }
+
 }

@@ -76,4 +76,12 @@ public class Anneau {
             suivant.dessiner(canvas, image);
     }
 
+    public boolean posDansSerpent(int x, int y) {
+        if(x > this.x && x < this.x + Serpent.getLargeurAnneau() && y > this.y && y < this.y + Serpent.getHauteurAnneau())
+            return true;
+        if(suivant == null)
+            return false;
+        else
+            return suivant.posDansSerpent(x,y);
+    }
 }

@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:largeHeap="true">
         <activity
-            android:name=".classement.Classement"
+            android:name=".pages.Classement"
             android:label="@string/title_activity_classement" />
 
         <meta-data
@@ -38,8 +38,8 @@
         </activity>
         <activity android:name=".popup.PopupFinPartie" />
         <activity android:name=".popup.PopupPause" />
-        <activity android:name=".Options" />
-        <activity android:name=".Jeu"
+        <activity android:name=".pages.Options" />
+        <activity android:name=".jeu.Jeu"
             android:theme="@style/AppTheme"/>
         <activity android:name=".Menu">
             <intent-filter>

@@ -8,10 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.snakegj.Jeu;
+import com.snakegj.jeu.Jeu;
 import com.snakegj.Menu;
 import com.snakegj.R;
-import com.snakegj.snake.JeuVue;
+import com.snakegj.jeu.JeuVue;
 
 public class PopupFinPartie extends AppCompatActivity {
 
@@ -23,7 +23,6 @@ public class PopupFinPartie extends AppCompatActivity {
         TextView score = findViewById(R.id.scoreFinal);
         Button btnRejouer = findViewById(R.id.btnRejouer);
         Button btnQuitter = findViewById(R.id.btnQuitter);
-
 
         /** probleme ne trouve pas le pseudo et peut pas ecrire dans firebase */
         btnRejouer.setOnClickListener(new View.OnClickListener() {
@@ -47,10 +46,6 @@ public class PopupFinPartie extends AppCompatActivity {
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int largeur = dm.widthPixels;
-        int hauteur = dm.heightPixels;
-
-        getWindow().setLayout((int) (largeur * 0.6), (int) (hauteur * 0.6));
+        getWindow().setLayout((int) (dm.widthPixels * 0.6), (int) (dm.heightPixels * 0.6));
     }
 }

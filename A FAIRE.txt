@@ -1,0 +1,23 @@
+important :
+
+- changer musique
+- mettre meilleur score a gauche et centre score dans toolbar de jeu
+- design titre appli (peu visible)
+- design options
+
+un peu important :
+
+- enlever panneau image fond jeu
+- fleche de navigation (retour) dans classement et options
+- menu : Le pseudo ne doit pas contenir de caracteres speciaux
+- pop up fin partie :  probleme ne trouve pas le pseudo et peut pas ecrire dans firebase
+- retenir si le mec met son sur off (remet à "on" au lancement)
+
+moins important : 
+
+- apparition fruit aleatoire au debut
+- accelerer snake
+
+
+
+Si quelqu'un prend un pseudo deja existant dans le classement ? mais bon osef

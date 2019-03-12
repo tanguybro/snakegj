@@ -1,18 +1,18 @@
-package com.snakegj;
+package com.snakegj.jeu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.snakegj.R;
 import com.snakegj.popup.PopupPause;
-import com.snakegj.snake.JeuVue;
 
 
 public class Jeu extends AppCompatActivity {
-
     private TextView txtScore;
     private TextView meilleurScore;
 
@@ -38,7 +38,7 @@ public class Jeu extends AppCompatActivity {
         txtScore.setText("Score : 0");
         txtScore.setTextSize(20);
         meilleurScore = new TextView(this);
-        int bestScore = 0; /** ALLER CHERCHER MEILLEUR SCORE */
+        int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
         meilleurScore.setText("MeilleurScore : " + bestScore);
         meilleurScore.setTextSize(20);
     }
@@ -53,9 +53,7 @@ public class Jeu extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if(id == R.id.action_pause) {
+        if(item.getItemId() == R.id.action_pause) {
             Intent intent = new Intent(Jeu.this, PopupPause.class);
             startActivity(intent);
             onPause();

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -35,26 +34,15 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.snakegj.classement.Classement;
+import com.snakegj.jeu.Jeu;
+import com.snakegj.pages.Classement;
+import com.snakegj.pages.Options;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 
-import static java.security.AccessController.getContext;
-
 public class Menu extends AppCompatActivity {
-
-    // Afficher meilleure score dans la toolbar de jeu
-
-    // DANS LE JEU : manque l'aspect quadrillage, dans le snake normal ya une espece de grille alors que la
-    // on peut manger le fruit sur 2 colonnes / ligne
-    // on a été con on aurait du penser a cet aspect des le debut
-    // faut pas que le fruit apparaise nimporte ou (multiple de taille anneau + pas sur le serpent)
-    // et fruit apparait pas sur les bords
-
-
-
     private LoginButton btnFb;
     private FirebaseAuth authen;
     private CallbackManager cm;
@@ -74,7 +62,8 @@ public class Menu extends AppCompatActivity {
 
         player = MediaPlayer.create(this, R.raw.musique);
         player.setLooping(true);
-        player.start();
+        if(!player.isPlaying())
+            player.start();
 
         //A corriger
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -100,6 +89,7 @@ public class Menu extends AppCompatActivity {
                 if(!chpPseudo.getText().toString().isEmpty() && !estConnecteFB()) {
                     Intent intent = new Intent(Menu.this, Jeu.class);
                     intent.putExtra("pseudo", chpPseudo.getText().toString());
+                    player.stop();
                     startActivity(intent);
                 }
                 else if(chpPseudo.getText().toString().isEmpty() && !estConnecteFB())
@@ -107,6 +97,7 @@ public class Menu extends AppCompatActivity {
                 else {
                     Intent intent = new Intent(Menu.this, Jeu.class);
                     intent.putExtra("pseudo", Profile.getCurrentProfile().getFirstName() + " " + Profile.getCurrentProfile().getLastName());
+                    player.stop();
                     startActivity(intent);
                 }
             }
@@ -126,8 +117,6 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        //demande des autorisations à l'utilisateur : consentement obligatoire sinon classement fb non fonctionnel
-        btnFb.setReadPermissions(Arrays.asList("email"));
         btnFb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,12 +140,10 @@ public class Menu extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-
             }
 
             @Override
             public void onError(FacebookException error) {
-
             }
         });
     }

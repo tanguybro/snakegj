@@ -1,14 +1,16 @@
-package com.snakegj;
+package com.snakegj.pages;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.snakegj.Menu;
+import com.snakegj.R;
+
 import java.io.IOException;
 
 public class Options extends AppCompatActivity {
-
     private Button btnJouer;
 
     @Override

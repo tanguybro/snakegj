@@ -2,9 +2,6 @@ package com.snakegj.snake.elementsGraphiques;
 
 import android.graphics.Canvas;
 
-import com.snakegj.snake.JeuVue;
-import com.snakegj.snake.elementsGraphiques.ElementGraphique;
-
 public class Fruit extends ElementGraphique {
     private int x, y;
     private int hauteur, largeur;
@@ -30,9 +27,12 @@ public class Fruit extends ElementGraphique {
         return hauteur;
     }
 
-    public void apparaitre() {
-        x = (int) (Math.random() * (FondJeu.getLargeur()) - 25);
-        y = (int) (Math.random() * (FondJeu.getHauteur()) - 25);
+    public void apparaitre(Serpent serpent) {
+        do {
+            x = (int) (Math.random() * (FondJeu.getLargeur() - (largeur/2)));
+            y = (int) (Math.random() * (FondJeu.getHauteur() - (hauteur/2)));
+        }
+        while(serpent.posDansSerpent(x,y));
     }
 
     public void dessiner(Canvas canvas) {

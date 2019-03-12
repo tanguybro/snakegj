@@ -1,12 +1,9 @@
 package com.snakegj.snake.elementsGraphiques;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import com.snakegj.plan.Direction;
 import com.snakegj.snake.Anneau;
-import com.snakegj.snake.JeuVue;
-import com.snakegj.snake.elementsGraphiques.ElementGraphique;
 
 public class Serpent extends ElementGraphique {
     private Anneau tete;
@@ -48,7 +45,6 @@ public class Serpent extends ElementGraphique {
     }
 
     public void deplacer() {
-
         switch (cap) {
             case EST:
                 tete.avancerA(getX() + PAS, getY(), true);
@@ -91,6 +87,10 @@ public class Serpent extends ElementGraphique {
 
     private boolean teteTouche(Anneau a) {
         return (tete.getX() == a.getX() && tete.getY() == a.getY());
+    }
+
+    public boolean posDansSerpent(int x, int y) {
+        return tete.posDansSerpent(x,y);
     }
 
     public void dessiner(Canvas canvas) {

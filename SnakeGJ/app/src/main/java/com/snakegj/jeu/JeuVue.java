@@ -1,23 +1,17 @@
-package com.snakegj.snake;
+package com.snakegj.jeu;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Gravity;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.snakegj.Jeu;
 import com.snakegj.R;
 import com.snakegj.plan.Direction;
 import com.snakegj.popup.PopupFinPartie;
@@ -55,7 +49,13 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     public void finPartie() {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         database.child(pseudo).setValue(score);
-        Intent intent = new Intent(context, PopupFinPartie.class); //affiche la popup
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if(score > preferences.getInt("Meilleur Score", 0)) {
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putInt("Meilleur Score", score);
+            editor.commit();
+        }
+        Intent intent = new Intent(context, PopupFinPartie.class);
         context.startActivity(intent);
     }
 
@@ -72,9 +72,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     //gestion du serpent
     public void update() {
         serpent.deplacer();
-        if(!estPasSurFruit()) {
+        if(estSurFruit()) {
               serpent.manger();
-              fruit.apparaitre();
+              fruit.apparaitre(serpent);
               score++;
               jeu.modifScore("Score : " + score);
         }
@@ -82,11 +82,11 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             finPartie();
     }
 
-    public boolean estPasSurFruit() {  /** A CHANGER INVERSER CONDITIONS POUR MEILLEUR NOM */
-        return fruit.getX() >= serpent.getX() + serpent.getLargeurAnneau()
+    public boolean estSurFruit() {
+        return !(fruit.getX() >= serpent.getX() + serpent.getLargeurAnneau()
                 || fruit.getX() + fruit.getLargeur() <= serpent.getX()
                 || fruit.getY() >= serpent.getY() + serpent.getHauteurAnneau()
-                || fruit.getY() + fruit.getHauteur() <= serpent.getY();
+                || fruit.getY() + fruit.getHauteur() <= serpent.getY());
     }
 
     // Gère les touchés sur l'écran
@@ -147,6 +147,5 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fondJeu.redimensionner(getContext(), R.drawable.fond, 1, 1);
-       // fruit.apparaitre(); fait que le fruit bouge si on fait pause et reprendre donc pb
     }
 }

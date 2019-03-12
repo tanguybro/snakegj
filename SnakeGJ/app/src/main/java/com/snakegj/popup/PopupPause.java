@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
-import com.snakegj.Jeu;
+import com.snakegj.jeu.Jeu;
 import com.snakegj.Menu;
 import com.snakegj.R;
 
@@ -21,7 +21,6 @@ public class PopupPause extends AppCompatActivity {
         Button btnRejouer = findViewById(R.id.btnRejouer);
         Button btnQuitter = findViewById(R.id.btnQuitter);
         Button btnReprendre = findViewById(R.id.btnReprendre);
-
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,11 +47,7 @@ public class PopupPause extends AppCompatActivity {
 
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int largeur = dm.widthPixels;
-        int hauteur = dm.heightPixels;
-
-        getWindow().setLayout((int) (largeur * 0.6), (int) (hauteur * 0.6));
+        getWindow().setLayout((int) (dm.widthPixels * 0.6), (int) (dm.heightPixels * 0.6));
     }
 
 }

@@ -5,8 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.content.res.ResourcesCompat;
 
-import com.snakegj.snake.JeuVue;
-
 public abstract class ElementGraphique {
     private BitmapDrawable image;
 
