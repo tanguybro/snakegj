@@ -44,17 +44,6 @@ import java.util.Arrays;
 import static java.security.AccessController.getContext;
 
 public class Menu extends AppCompatActivity {
-
-    // Afficher meilleure score dans la toolbar de jeu
-
-    // DANS LE JEU : manque l'aspect quadrillage, dans le snake normal ya une espece de grille alors que la
-    // on peut manger le fruit sur 2 colonnes / ligne
-    // on a été con on aurait du penser a cet aspect des le debut
-    // faut pas que le fruit apparaise nimporte ou (multiple de taille anneau + pas sur le serpent)
-    // et fruit apparait pas sur les bords
-
-
-
     private LoginButton btnFb;
     private FirebaseAuth authen;
     private CallbackManager cm;
