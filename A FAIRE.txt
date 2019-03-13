@@ -4,14 +4,14 @@ important :
 - mettre meilleur score a gauche et centre score dans toolbar de jeu
 - design titre appli (peu visible)
 - design options
+- pop up fin partie :  probleme ne trouve pas le pseudo et peut pas ecrire dans firebase
+- menu : Le pseudo ne doit pas contenir de caracteres speciaux
 
 un peu important :
 
 - enlever panneau image fond jeu
 - fleche de navigation (retour) dans classement et options
-- menu : Le pseudo ne doit pas contenir de caracteres speciaux
-- pop up fin partie :  probleme ne trouve pas le pseudo et peut pas ecrire dans firebase
-- retenir si le mec met son sur off (remet à "on" au lancement)
+- retenir si le mec met son sur off (remet Ã  "on" au lancement)
 
 moins important : 
 
