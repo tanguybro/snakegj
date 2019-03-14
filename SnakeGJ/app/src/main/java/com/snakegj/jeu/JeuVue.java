@@ -56,6 +56,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             editor.commit();
         }
         Intent intent = new Intent(context, PopupFinPartie.class);
+        intent.putExtra("pseudo", pseudo);
         context.startActivity(intent);
     }
 

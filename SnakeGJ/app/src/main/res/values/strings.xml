@@ -17,5 +17,6 @@
     <string name="mondial">Mondial</string>
     <string name="meilleurScore">Meilleur Score</string>
     <string name="son">Son :</string>
+    <string name="activer_d_sactiver_la_musique_du_jeu">Activer/désactiver la musique du jeu</string>
 
 </resources>

@@ -3,11 +3,14 @@ package com.snakegj.jeu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.database.collection.LLRBNode;
 import com.snakegj.R;
 import com.snakegj.popup.PopupPause;
 
@@ -36,16 +39,21 @@ public class Jeu extends AppCompatActivity {
     private void initScores() {
         txtScore = new TextView(this);
         txtScore.setText("Score : 0");
+        txtScore.setTextColor(getResources().getColor(R.color.com_facebook_button_text_color));
         txtScore.setTextSize(20);
+        txtScore.setGravity(Gravity.RIGHT);
         meilleurScore = new TextView(this);
         int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
-        meilleurScore.setText("MeilleurScore : " + bestScore);
+        meilleurScore.setText("Meilleur Score : " + bestScore);
         meilleurScore.setTextSize(20);
+        meilleurScore.setTextColor(getResources().getColor(R.color.com_facebook_button_text_color));
+        meilleurScore.setGravity(Gravity.LEFT);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(meilleurScore);
     }
 
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
-        menu.add(Menu.NONE, Menu.NONE, 1, "meilleurScore").setActionView(meilleurScore).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         menu.add(Menu.NONE, Menu.NONE, 2, "score").setActionView(txtScore).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         getMenuInflater().inflate(R.menu.menu_jeu, menu);
         return true;
@@ -56,9 +64,10 @@ public class Jeu extends AppCompatActivity {
         if(item.getItemId() == R.id.action_pause) {
             Intent intent = new Intent(Jeu.this, PopupPause.class);
             startActivity(intent);
-            onPause();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }

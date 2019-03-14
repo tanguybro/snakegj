@@ -1,10 +1,12 @@
 package com.snakegj;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.media.MediaPlayer;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -38,9 +40,10 @@ import com.snakegj.jeu.Jeu;
 import com.snakegj.pages.Classement;
 import com.snakegj.pages.Options;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class Menu extends AppCompatActivity {
     private LoginButton btnFb;
@@ -60,10 +63,16 @@ public class Menu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        player = MediaPlayer.create(this, R.raw.musique);
-        player.setLooping(true);
-        if(!player.isPlaying())
+        player = MediaPlayer.create(this, R.raw.open);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        if(preferences.getString("etat musique", "Off").equals("On")) {
+            player.setLooping(true);
             player.start();
+        }
+        else {
+            player.stop();
+        }
+
 
         //A corriger
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -86,7 +95,9 @@ public class Menu extends AppCompatActivity {
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!chpPseudo.getText().toString().isEmpty() && !estConnecteFB()) {
+                if(contientCaracSpeciaux(chpPseudo.getText().toString()) && !estConnecteFB())
+                    Toast.makeText(Menu.this, "Pseudo invalide : caractères spéciaux à retirer", Toast.LENGTH_SHORT).show();
+                else if(!chpPseudo.getText().toString().isEmpty() && !estConnecteFB()) {
                     Intent intent = new Intent(Menu.this, Jeu.class);
                     intent.putExtra("pseudo", chpPseudo.getText().toString());
                     player.stop();
@@ -128,6 +139,10 @@ public class Menu extends AppCompatActivity {
             cacherInterface();
 
         obtenirCleHash(); //pour lier app et login facebook
+    }
+
+    static boolean contientCaracSpeciaux(String string) {
+        return Pattern.compile("[@#$%*^¨&+-=()_<>.,;!?/]").matcher(string).find();
     }
 
     private void seConnecter() {

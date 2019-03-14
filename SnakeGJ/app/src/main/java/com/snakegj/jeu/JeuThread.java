@@ -4,9 +4,8 @@ import android.graphics.Canvas;
 public class JeuThread extends Thread {
         private final static int IMG_PAR_SDE = 1;
 
-        // si on veut X images en 1 seconde, soit en 1000 ms,
-        // on doit en afficher une toutes les (1000 / X) ms.
-        private final static int FREQUENCE = 400 / IMG_PAR_SDE;
+        //1 image en 200 ms
+        private final static int FREQUENCE = 200 / IMG_PAR_SDE;
 
         private final JeuVue view;
         private boolean running = false; // état du thread
@@ -32,8 +31,7 @@ public class JeuThread extends Thread {
                     view.update();
                 }
 
-                // Rendu de l'image, tout en vérrouillant l'accès car nous
-                // y accédons à partir d'un processus distinct
+                // Rendu de l'image, tout en vérrouillant l'accès car on accède à partir d'un processus distinct
                 Canvas c = null;
                 try {
                     c = view.getHolder().lockCanvas();
