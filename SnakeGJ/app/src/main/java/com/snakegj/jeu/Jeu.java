@@ -14,6 +14,8 @@ import com.google.firebase.database.collection.LLRBNode;
 import com.snakegj.R;
 import com.snakegj.popup.PopupPause;
 
+import java.io.IOException;
+
 
 public class Jeu extends AppCompatActivity {
     private TextView txtScore;
@@ -69,5 +71,20 @@ public class Jeu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            com.snakegj.Menu.getPlayer().prepare();
+            com.snakegj.Menu.getPlayer().start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        com.snakegj.Menu.getPlayer().stop();
+    }
 }

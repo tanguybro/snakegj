@@ -27,8 +27,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.snakegj.Menu;
 import com.snakegj.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -94,4 +96,20 @@ public class Classement extends AppCompatActivity {
         return !(network == null || !network.isConnected());
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Menu.getPlayer().stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            Menu.getPlayer().prepare();
+            Menu.getPlayer().start();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
