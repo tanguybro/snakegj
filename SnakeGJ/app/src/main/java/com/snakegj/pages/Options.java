@@ -65,20 +65,4 @@ public class Options extends AppCompatActivity {
         editor.commit();
     }
 
-    /*@Override
-    protected void onPause() {
-        super.onPause();
-        Menu.getPlayer().stop();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            Menu.getPlayer().prepare();
-            Menu.getPlayer().start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }
