@@ -238,7 +238,7 @@ public class Menu extends AppCompatActivity {
         }
     }
 
-    @Override
+   /* @Override
     protected void onPause() {
         super.onPause();
         player.stop();
@@ -254,5 +254,5 @@ public class Menu extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }

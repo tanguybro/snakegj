@@ -66,7 +66,7 @@ public class Classement extends AppCompatActivity {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         table.addView(entete);
 
-        Query q = database.orderByValue().limitToLast(10); //on trie dans l'ordre croissant et on recupere les 10 derniers scores
+        Query q = database.orderByValue().limitToLast(8); //on trie dans l'ordre croissant et on recupere les 10 derniers scores
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,7 +96,7 @@ public class Classement extends AppCompatActivity {
         return !(network == null || !network.isConnected());
     }
 
-    @Override
+  /*  @Override
     protected void onPause() {
         super.onPause();
         Menu.getPlayer().stop();
@@ -111,5 +111,5 @@ public class Classement extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

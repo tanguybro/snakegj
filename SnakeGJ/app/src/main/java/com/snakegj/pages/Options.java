@@ -65,7 +65,7 @@ public class Options extends AppCompatActivity {
         editor.commit();
     }
 
-    @Override
+    /*@Override
     protected void onPause() {
         super.onPause();
         Menu.getPlayer().stop();
@@ -80,5 +80,5 @@ public class Options extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }

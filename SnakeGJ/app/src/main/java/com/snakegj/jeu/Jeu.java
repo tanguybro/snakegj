@@ -71,7 +71,7 @@ public class Jeu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
         try {
@@ -86,5 +86,5 @@ public class Jeu extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         com.snakegj.Menu.getPlayer().stop();
-    }
+    }*/
 }
