@@ -14,7 +14,8 @@
         android:largeHeap="true">
         <activity
             android:name=".pages.Classement"
-            android:label="@string/title_activity_classement" />
+            android:label="@string/title_activity_classement"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -38,8 +39,10 @@
         </activity>
         <activity android:name=".popup.PopupFinPartie" />
         <activity android:name=".popup.PopupPause" />
-        <activity android:name=".pages.Options" />
+        <activity android:name=".pages.Options"
+            android:screenOrientation="portrait"/>
         <activity android:name=".jeu.Jeu"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"/>
         <activity android:name=".Menu">
             <intent-filter>
