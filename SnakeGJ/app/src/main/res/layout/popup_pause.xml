@@ -1,56 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".popup.PopupFinPartie">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/com_facebook_button_send_background_color_pressed">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:text="Pause"
-            android:textSize="20sp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            />
-
-    </FrameLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/pause"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textColor="@android:color/holo_blue_dark" />
 
     <Button
         android:id="@+id/btnReprendre"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Reprendre"
+        android:text="@string/reprendre"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="100dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
 
     <Button
         android:id="@+id/btnRejouer"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Rejouer"
+        android:text="@string/rejouer"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
 
     <Button
         android:id="@+id/btnQuitter"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Quitter"
+        android:text="@string/quitter"
         android:layout_gravity="center_horizontal|bottom"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        />
-
-
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
 
 </FrameLayout>

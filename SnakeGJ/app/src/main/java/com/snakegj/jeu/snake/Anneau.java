@@ -1,11 +1,11 @@
-package com.snakegj.snake;
+package com.snakegj.jeu.snake;
 
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.snakegj.plan.Direction;
-import com.snakegj.snake.elementsGraphiques.Serpent;
+import com.snakegj.jeu.plan.Direction;
+import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
 
 public class Anneau {
     private Anneau suivant;

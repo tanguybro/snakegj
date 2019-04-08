@@ -26,7 +26,7 @@ public class Jeu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         initScores();
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        setContentView(new JeuVue(this, this, getIntent().getStringExtra("pseudo")));
+        setContentView(new JeuVue(this, this));
     }
 
     public void modifScore(final String texteScore){
@@ -41,14 +41,12 @@ public class Jeu extends AppCompatActivity {
     private void initScores() {
         txtScore = new TextView(this);
         txtScore.setText("Score : 0");
-        txtScore.setTextColor(getResources().getColor(R.color.com_facebook_button_text_color));
         txtScore.setTextSize(20);
         txtScore.setGravity(Gravity.RIGHT);
         meilleurScore = new TextView(this);
         int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
         meilleurScore.setText("Meilleur Score : " + bestScore);
         meilleurScore.setTextSize(20);
-        meilleurScore.setTextColor(getResources().getColor(R.color.com_facebook_button_text_color));
         meilleurScore.setGravity(Gravity.LEFT);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(meilleurScore);
@@ -64,27 +62,10 @@ public class Jeu extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_pause) {
-            Intent intent = new Intent(Jeu.this, PopupPause.class);
-            startActivity(intent);
+            startActivity(new Intent(Jeu.this, PopupPause.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
-   /* @Override
-    protected void onResume() {
-        super.onResume();
-        try {
-            com.snakegj.Menu.getPlayer().prepare();
-            com.snakegj.Menu.getPlayer().start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        com.snakegj.Menu.getPlayer().stop();
-    }*/
 }

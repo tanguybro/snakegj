@@ -27,36 +27,7 @@
             android:text="@string/snakegj"
             android:textSize="30sp"
             android:layout_marginBottom="20dp"
-            android:background="@color/com_facebook_button_send_background_color_pressed"
             android:textColor="@android:color/white"/>
-
-        <FrameLayout
-            android:id="@+id/interfacePseudo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/common_google_signin_btn_icon_dark_normal_background">
-
-            <EditText
-                android:id="@+id/chpPseudo"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:hint="Pseudo"
-                android:inputType="text"
-                android:textSize="18sp"
-                android:textColor="@android:color/black"
-                />
-
-        </FrameLayout>
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/btnFacebookCo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            />
 
         <Button
             android:id="@+id/jouer"
@@ -74,15 +45,6 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
             android:text="@string/classement"
-            android:textColor="@android:color/white"/>
-
-        <Button
-            android:id="@+id/options"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
-            android:text="@string/options"
             android:textColor="@android:color/white"/>
 
     </LinearLayout>

@@ -1,9 +1,9 @@
-package com.snakegj.snake.elementsGraphiques;
+package com.snakegj.jeu.snake.elementsGraphiques;
 
 import android.graphics.Canvas;
 
-import com.snakegj.plan.Direction;
-import com.snakegj.snake.Anneau;
+import com.snakegj.jeu.plan.Direction;
+import com.snakegj.jeu.snake.Anneau;
 
 public class Serpent extends ElementGraphique {
     private Anneau tete;

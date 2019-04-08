@@ -2,34 +2,29 @@ package com.snakegj.jeu;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.snakegj.R;
-import com.snakegj.plan.Direction;
+import com.snakegj.jeu.plan.Direction;
+import com.snakegj.jeu.snake.elementsGraphiques.FondJeu;
+import com.snakegj.jeu.snake.elementsGraphiques.Fruit;
+import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
 import com.snakegj.popup.PopupFinPartie;
-import com.snakegj.snake.elementsGraphiques.FondJeu;
-import com.snakegj.snake.elementsGraphiques.Fruit;
-import com.snakegj.snake.elementsGraphiques.Serpent;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
     private Serpent serpent;
     private Fruit fruit;
     private FondJeu fondJeu;
-    private String pseudo;
     private Context context;
     private Jeu jeu;
     private static int score;
 
-    public JeuVue(Context context, Jeu j, String nom) {
+    public JeuVue(Context context, Jeu j) {
         super(context);
         getHolder().addCallback(this);
         jeuThread = new JeuThread(this);
@@ -37,26 +32,13 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         serpent = new Serpent();
         fondJeu = new FondJeu();
         score = 0;
-        pseudo = nom;
         jeu = j;
         this.context = context;
     }
 
-    public static int getScore() {
-        return score;
-    }
-
-    public void finPartie() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.child(pseudo).setValue(score);
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        if(score > preferences.getInt("Meilleur Score", 0)) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("Meilleur Score", score);
-            editor.commit();
-        }
+    private void finPartie() {
         Intent intent = new Intent(context, PopupFinPartie.class);
-        intent.putExtra("pseudo", pseudo);
+        intent.putExtra("score", score);
         context.startActivity(intent);
     }
 

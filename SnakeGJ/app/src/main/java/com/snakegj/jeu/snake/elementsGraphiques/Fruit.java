@@ -1,4 +1,4 @@
-package com.snakegj.snake.elementsGraphiques;
+package com.snakegj.jeu.snake.elementsGraphiques;
 
 import android.graphics.Canvas;
 

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,39 +8,46 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/com_facebook_button_send_background_color_pressed">
+        android:layout_height="200dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:text="Les gilets jaunes ont succombé"
+            android:text="@string/les_gilets_jaunes_ont_succomb"
             android:textSize="20sp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
-            />
+            android:textColor="@android:color/holo_blue_dark" />
 
         <TextView
             android:id="@+id/scoreFinal"
             android:layout_width="150dp"
             android:layout_height="50dp"
-            android:text="Votre score : "
+            android:text="@string/votre_score"
             android:textSize="20sp"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@android:color/holo_blue_dark"
             android:layout_gravity="center"
             android:gravity="center"
             android:layout_marginTop="75dp"/>
 
+        <EditText
+            android:id="@+id/chpPseudo"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:hint="@string/pseudo"
+            android:inputType="text"
+            android:textSize="18sp"
+            android:textColor="@android:color/black" />
+
     </FrameLayout>
-
-
 
     <Button
         android:id="@+id/btnRejouer"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Rejouer"
+        android:text="@string/rejouer"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="50dp"
         android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
@@ -50,11 +56,9 @@
         android:id="@+id/btnQuitter"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:text="Quitter"
+        android:text="@string/quitter"
         android:layout_gravity="center_horizontal|bottom"
         android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
         />
-
-
 
 </FrameLayout>
