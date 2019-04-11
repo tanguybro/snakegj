@@ -27,25 +27,29 @@
             android:text="@string/snakegj"
             android:textSize="30sp"
             android:layout_marginBottom="20dp"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/Bloomer DEMO" />
 
         <Button
             android:id="@+id/jouer"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
+            android:background="@drawable/design_button"
             android:text="@string/jouer"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/Bloomer DEMO"/>
 
         <Button
             android:id="@+id/classement"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_gravity="center_horizontal"
-            android:background="@drawable/common_google_signin_btn_text_dark_normal_background"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/design_button"
             android:text="@string/classement"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/Bloomer DEMO"/>
 
     </LinearLayout>
 
