@@ -1,6 +1,7 @@
 package com.snakegj.jeu;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
@@ -40,14 +41,18 @@ public class Jeu extends AppCompatActivity {
 
     private void initScores() {
         txtScore = new TextView(this);
-        txtScore.setText("Score : 0");
+        txtScore.setText("SCORE : 0");
         txtScore.setTextSize(20);
         txtScore.setGravity(Gravity.RIGHT);
+        Typeface typeS = Typeface.createFromAsset(getAssets(),"fonts/alarm_clock.ttf");
+        txtScore.setTypeface(typeS);
         meilleurScore = new TextView(this);
         int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
-        meilleurScore.setText("Meilleur Score : " + bestScore);
+        meilleurScore.setText("MEILLEUR SCORE : " + bestScore);
         meilleurScore.setTextSize(20);
         meilleurScore.setGravity(Gravity.LEFT);
+        Typeface typeMs = Typeface.createFromAsset(getAssets(),"fonts/alarm_clock.ttf");
+        meilleurScore.setTypeface(typeMs);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(meilleurScore);
     }
