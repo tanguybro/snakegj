@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/classement_background"
     android:fitsSystemWindows="true"
     tools:context=".Classement">
 
@@ -11,26 +12,32 @@
         android:id="@+id/classement"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:gravity="center"
         android:layout_marginTop="30dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
         android:text="@string/classement"
-        android:textSize="20sp" />
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:textSize="35sp" />
 
     <ImageButton
         android:id="@+id/btnRetour"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="45dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@id/classement"
+        android:background="@drawable/design_button"
         android:src="@drawable/ic_retour" />
 
     <TextView
         android:id="@+id/msgErreur"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:text=""
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="200dp" />
 
@@ -38,8 +45,11 @@
         android:id="@+id/tableScores"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center_horizontal" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/classement"
+        android:layout_marginTop="20dp"
+        android:background="@color/grisClair"
+        />
 
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

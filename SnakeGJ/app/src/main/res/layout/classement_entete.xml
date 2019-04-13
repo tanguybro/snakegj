@@ -9,8 +9,11 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="Pseudo"
+        android:textSize="20sp"
+        android:fontFamily="@font/bloomer_demo"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_dark"
+        android:background="@color/grisClair"
+        android:textColor="@android:color/white"
         android:layout_weight="1"/>
 
     <TextView
@@ -18,8 +21,11 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="Score"
+        android:textSize="20sp"
+        android:fontFamily="@font/bloomer_demo"
         android:gravity="center"
-        android:textColor="@android:color/holo_blue_dark"
+        android:background="@color/grisClair"
+        android:textColor="@android:color/white"
         android:layout_weight="1"/>
 
 </TableRow>
