@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -50,6 +53,17 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fondJeu.dessiner(canvas);
         serpent.dessiner(canvas);
         fruit.dessiner(canvas);
+        afficherMeilleurScore(canvas);
+    }
+
+    public void afficherMeilleurScore(Canvas canvas) {
+        Paint meilleurScore = new Paint();
+        meilleurScore.setColor(Color.WHITE);
+        meilleurScore.setTextSize(30);
+        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/bloomer_demo.otf");
+        meilleurScore.setTypeface(typeface);
+        int bestScore = PreferenceManager.getDefaultSharedPreferences(context).getInt("Meilleur Score", 0);
+        canvas.drawText("Meilleur score : " + bestScore, 10, 50, meilleurScore);
     }
 
     //gestion du serpent
