@@ -1,5 +1,6 @@
 package com.snakegj.jeu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -20,11 +21,11 @@ import com.snakegj.popup.PopupFinPartie;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
-    private Serpent serpent;
-    private Fruit fruit;
-    private FondJeu fondJeu;
-    private Context context;
-    private Jeu jeu;
+    private final Serpent serpent;
+    private final Fruit fruit;
+    private final FondJeu fondJeu;
+    private final Context context;
+    private final Jeu jeu;
     private static int score;
 
     public JeuVue(Context context, Jeu j) {
@@ -56,7 +57,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         afficherMeilleurScore(canvas);
     }
 
-    public void afficherMeilleurScore(Canvas canvas) {
+    private void afficherMeilleurScore(Canvas canvas) {
         Paint meilleurScore = new Paint();
         meilleurScore.setColor(Color.WHITE);
         meilleurScore.setTextSize(30);
@@ -79,14 +80,15 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             finPartie();
     }
 
-    public boolean estSurFruit() {
-        return !(fruit.getX() >= serpent.getX() + serpent.getLargeurAnneau()
+    private boolean estSurFruit() {
+        return !(fruit.getX() >= serpent.getX() + Serpent.getLargeurAnneau()
                 || fruit.getX() + fruit.getLargeur() <= serpent.getX()
-                || fruit.getY() >= serpent.getY() + serpent.getHauteurAnneau()
+                || fruit.getY() >= serpent.getY() + Serpent.getHauteurAnneau()
                 || fruit.getY() + fruit.getHauteur() <= serpent.getY());
     }
 
     // Gère les touchés sur l'écran
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         int x = (int)event.getX();

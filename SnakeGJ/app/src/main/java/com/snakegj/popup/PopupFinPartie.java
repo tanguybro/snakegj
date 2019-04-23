@@ -2,9 +2,9 @@ package com.snakegj.popup;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
@@ -14,10 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.snakegj.jeu.Jeu;
 import com.snakegj.Menu;
 import com.snakegj.R;
-import com.snakegj.jeu.JeuVue;
+import com.snakegj.jeu.Jeu;
 
 import java.util.regex.Pattern;
 

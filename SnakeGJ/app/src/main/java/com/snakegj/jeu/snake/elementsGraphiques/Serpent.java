@@ -6,13 +6,13 @@ import com.snakegj.jeu.plan.Direction;
 import com.snakegj.jeu.snake.Anneau;
 
 public class Serpent extends ElementGraphique {
-    private Anneau tete;
+    private final Anneau tete;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
     private static final int PAS = 85; //déplacement du snake
 
     public Serpent() {
-        tete = new Anneau(100, 200); /** Debut aleatoire ? */
+        tete = new Anneau(100, 200);
         cap = Direction.EST;
     }
 
@@ -69,7 +69,7 @@ public class Serpent extends ElementGraphique {
         }
     }
 
-    public boolean estAuBord() {
+    private boolean estAuBord() {
         return tete.getX() > FondJeu.getLargeur() || tete.getY() > FondJeu.getHauteur() || tete.getX() + largeurAnneau < 0 || tete.getY() + hauteurAnneau < 0;
     }
 

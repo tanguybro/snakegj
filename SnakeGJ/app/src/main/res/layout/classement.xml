@@ -48,8 +48,6 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@id/classement"
         android:layout_marginTop="20dp"
-        android:background="@color/grisClair"
-        />
-
+        android:background="@color/grisClair" />
 
 </RelativeLayout>

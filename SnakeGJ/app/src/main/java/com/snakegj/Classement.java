@@ -18,14 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.snakegj.R;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Classement extends AppCompatActivity {
     private TableLayout table;
-    private ImageButton btnRetour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class Classement extends AppCompatActivity {
         setContentView(R.layout.classement);
 
         table = findViewById(R.id.tableScores);
-        btnRetour = findViewById(R.id.btnRetour);
+        ImageButton btnRetour = findViewById(R.id.btnRetour);
         btnRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

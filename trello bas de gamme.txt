@@ -6,3 +6,5 @@
 comme pseudo, il sera 1er mais plus 6e --> il devrait etre avoir son pseudo sur les 2
 
 - afficher champ pseudo seulement si meilleure score et dire "bravo vous etes 5e du classement !"
+
+- apparition serpent début aleatoire ? 

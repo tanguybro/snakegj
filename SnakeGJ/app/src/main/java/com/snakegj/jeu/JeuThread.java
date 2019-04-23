@@ -1,7 +1,7 @@
 package com.snakegj.jeu;
 import android.graphics.Canvas;
 
-public class JeuThread extends Thread {
+class JeuThread extends Thread {
         private final static int IMG_PAR_SDE = 1;
 
         //1 image en 200 ms

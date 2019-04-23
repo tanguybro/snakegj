@@ -8,9 +8,9 @@ import android.support.v4.content.res.ResourcesCompat;
 public abstract class ElementGraphique {
     private BitmapDrawable image;
 
-    public abstract void modifierDimensions(int largeur, int hauteur);
+    protected abstract void modifierDimensions(int largeur, int hauteur);
 
-    protected BitmapDrawable getImage() {
+    BitmapDrawable getImage() {
         return image;
     }
 

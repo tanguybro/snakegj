@@ -21,7 +21,7 @@ public class FondJeu extends ElementGraphique {
 
     @Override
     public void modifierDimensions(int largeur, int hauteur) {
-        this.largeur = largeur;
-        this.hauteur = hauteur;
+        FondJeu.largeur = largeur;
+        FondJeu.hauteur = hauteur;
     }
 }

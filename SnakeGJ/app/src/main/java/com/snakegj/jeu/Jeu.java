@@ -1,24 +1,17 @@
 package com.snakegj.jeu;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.firebase.database.collection.LLRBNode;
 import com.snakegj.R;
 import com.snakegj.popup.PopupPause;
-
-import java.io.IOException;
 
 
 public class Jeu extends AppCompatActivity {
