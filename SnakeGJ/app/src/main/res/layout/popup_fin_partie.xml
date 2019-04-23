@@ -58,7 +58,6 @@
         android:layout_height="50dp"
         android:text="@string/quitter"
         android:layout_gravity="center_horizontal|bottom"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"
-        />
+        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background"/>
 
 </FrameLayout>
