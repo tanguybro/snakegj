@@ -1,44 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
+    android:background="@drawable/tableau"
     tools:context=".popup.PopupFinPartie">
 
     <TextView
+        android:id="@+id/pause"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="@string/pause"
-        android:textSize="20sp"
+        android:textSize="60sp"
         android:gravity="center"
-        android:layout_gravity="center"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:fontFamily="@font/alarm_clock"
+        android:textColor="@android:color/holo_orange_dark" />
+
 
     <Button
         android:id="@+id/btnReprendre"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/reprendre"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/pause"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/design_button" />
 
     <Button
         android:id="@+id/btnRejouer"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/rejouer"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_marginBottom="50dp"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/btnReprendre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/design_button" />
 
     <Button
         android:id="@+id/btnQuitter"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="@string/quitter"
-        android:layout_gravity="center_horizontal|bottom"
-        android:background="@drawable/common_google_signin_btn_icon_dark_normal_background" />
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/btnRejouer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/design_button" />
 
-</FrameLayout>
+</RelativeLayout>

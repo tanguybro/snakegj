@@ -6,10 +6,10 @@
     <string name="score">Score : 0</string>
     <string name="title_activity_classement">Classement</string>
     <string name="meilleurScore">Meilleur Score</string>
-    <string name="les_gilets_jaunes_ont_succomb">Les gilets jaunes ont succombé</string>
-    <string name="votre_score">Votre score :</string>
+    <string name="les_gilets_jaunes_ont_succomb">LES GILETS JAUNES ONT SUCCOMBE</string>
+    <string name="votre_score">VOTRE SCORE :</string>
     <string name="pseudo">Pseudo</string>
-    <string name="pause">Pause</string>
+    <string name="pause">PAUSE</string>
     <string name="quitter">Quitter</string>
     <string name="reprendre">Reprendre</string>
     <string name="rejouer">Rejouer</string>
