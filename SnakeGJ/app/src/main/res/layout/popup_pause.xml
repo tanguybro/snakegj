@@ -6,17 +6,12 @@
     android:background="@drawable/tableau"
     tools:context=".popup.PopupFinPartie">
 
-    <TextView
-        android:id="@+id/pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/pause"
-        android:textSize="60sp"
-        android:gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/alarm_clock"
-        android:textColor="@android:color/holo_orange_dark" />
+    <ImageView
+        android:id="@+id/logoPause"
+        android:layout_width="400dp"
+        android:layout_height="350dp"
+        android:background="@drawable/logo_pause"
+        android:layout_centerHorizontal="true"/>
 
 
     <Button
@@ -27,9 +22,9 @@
         android:textSize="20sp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/bloomer_demo"
-        android:layout_below="@id/pause"
+        android:layout_below="@id/logoPause"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+
         android:background="@drawable/design_button" />
 
     <Button
