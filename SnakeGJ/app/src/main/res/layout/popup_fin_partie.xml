@@ -8,18 +8,19 @@
 
         <TextView
             android:id="@+id/descFinPart"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:gravity="center"
+            android:layout_marginTop="50dp"
             android:text="@string/les_gilets_jaunes_ont_succomb"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/alarm_clock"
             android:textColor="@android:color/holo_orange_dark" />
 
         <TextView
             android:id="@+id/scoreFinal"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_centerHorizontal="true"
             android:text="@string/votre_score"
@@ -27,7 +28,7 @@
             android:layout_below="@id/descFinPart"
             android:fontFamily="@font/alarm_clock"
             android:textColor="@android:color/holo_orange_dark"
-            android:layout_marginTop="75dp"/>
+            android:layout_marginTop="50dp"/>
 
         <EditText
             android:id="@+id/chpPseudo"
@@ -35,6 +36,7 @@
             android:layout_height="40dp"
             android:layout_marginTop="25dp"
             android:layout_below="@id/scoreFinal"
+            android:visibility="invisible"
             android:gravity="center"
             android:layout_centerHorizontal="true"
             android:hint="@string/pseudo"
@@ -46,6 +48,20 @@
             android:background="@drawable/tableau"/>
 
     <Button
+        android:id="@+id/btnValider"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        android:text="@string/valider"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/chpPseudo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/design_button"/>
+
+    <Button
         android:id="@+id/btnRejouer"
         android:layout_width="150dp"
         android:layout_height="50dp"
@@ -53,9 +69,9 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:fontFamily="@font/bloomer_demo"
-        android:layout_below="@id/chpPseudo"
+        android:layout_below="@id/btnValider"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="25dp"
         android:background="@drawable/design_button"/>
 
     <Button
@@ -64,7 +80,7 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btnRejouer"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="25dp"
         android:text="@string/quitter"
         android:textColor="@android:color/white"
         android:textSize="20sp"

@@ -21,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Map;
 
 public class Classement extends AppCompatActivity {
     private TableLayout table;
@@ -57,13 +58,17 @@ public class Classement extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<View> vues = new ArrayList<>();
+                int i = 10;
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
                     TableRow ligne = (TableRow) getLayoutInflater().inflate(R.layout.classement_ligne, table, false);
                     TextView pseudo = ligne.findViewById(R.id.pseudo);
                     TextView score = ligne.findViewById(R.id.score);
+                    TextView top = ligne.findViewById(R.id.top);
                     pseudo.setText(d.getKey());
                     score.setText(String.valueOf(d.getValue()));
+                    top.setText(String.valueOf(i));
                     vues.add(ligne);
+                    i--;
                 }
                 Collections.reverse(vues);
                 for(View v : vues)
