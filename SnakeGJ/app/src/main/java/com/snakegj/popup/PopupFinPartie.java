@@ -51,6 +51,7 @@ public class PopupFinPartie extends AppCompatActivity {
         txtScore.setText("VOTRE SCORE : " + score);
 
         verifierScore(score);
+        inscrireMeilleurScore(score);
 
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
