@@ -1,10 +1,10 @@
-- Design (on sait tout les 2 que je vais m'en occuper de toute facon..), changer fond jeu
-
-- Classement --> gerer affichage pour que top 10 puisse etre affiche meme sur petit tel (comme le tien)
-
 - Classement --> si "toto" est 6e, qu'il fait le meilleur score tout en inscrivant tjrs "toto"
 comme pseudo, il sera 1er mais plus 6e --> il devrait etre avoir son pseudo sur les 2
 
-- afficher champ pseudo seulement si meilleure score et dire "bravo vous etes 5e du classement !"
+- pb collision entre gilets
 
-- apparition serpent début aleatoire ? 
+- affichage meilleur score ds toolbar ? et centrer score ? 
+
+- boutons menu + petit et + centrés?
+
+- problème avec le serpent par exemple quand il arrive au bout de l’écran on voit qu’une partie

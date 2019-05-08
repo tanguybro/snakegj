@@ -34,6 +34,7 @@ public class PopupFinPartie extends AppCompatActivity {
     private Button btnRejouer;
     private Button btnQuitter;
     private Button btnValider;
+    private boolean dansClassement = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,27 +69,40 @@ public class PopupFinPartie extends AppCompatActivity {
             }
         });
 
-
-
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PopupFinPartie.this, Jeu.class);
-                String pseudo = getIntent().getStringExtra("pseudo");
-                intent.putExtra("pseudo", pseudo);
-                startActivity(intent);
-                finish();
+                if(dansClassement && champPseudo.getText().toString().isEmpty())
+                    Toast.makeText(PopupFinPartie.this, "Veuillez entrer un pseudo", Toast.LENGTH_SHORT).show();
+                else if(dansClassement && contientCaracSpeciaux(champPseudo.getText().toString()))
+                    Toast.makeText(PopupFinPartie.this, "Pseudo invalide : caractères spéciaux à retirer", Toast.LENGTH_SHORT).show();
+                else {
+                    if(dansClassement)
+                        inscrireClassement(score);
+                    Intent intent = new Intent(PopupFinPartie.this, Jeu.class);
+                    String pseudo = getIntent().getStringExtra("pseudo");
+                    intent.putExtra("pseudo", pseudo);
+                    startActivity(intent);
+                    finish();
+                }
             }
         });
 
         btnQuitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PopupFinPartie.this, Menu.class));
-                finish();
+                if(dansClassement && champPseudo.getText().toString().isEmpty())
+                    Toast.makeText(PopupFinPartie.this, "Veuillez entrer un pseudo", Toast.LENGTH_SHORT).show();
+                else if(dansClassement && contientCaracSpeciaux(champPseudo.getText().toString()))
+                    Toast.makeText(PopupFinPartie.this, "Pseudo invalide : caractères spéciaux à retirer", Toast.LENGTH_SHORT).show();
+                else {
+                    if(dansClassement)
+                        inscrireClassement(score);
+                    startActivity(new Intent(PopupFinPartie.this, Menu.class));
+                    finish();
+                }
             }
         });
-
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         getWindow().setLayout((int) (dm.widthPixels * 0.8), (int) (dm.heightPixels * 0.8));
@@ -129,6 +143,7 @@ public class PopupFinPartie extends AppCompatActivity {
                         descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + "EME" );
                         champPseudo.setVisibility(View.VISIBLE);
                         btnValider.setVisibility(View.VISIBLE);
+                        dansClassement = true;
                     }
                     i++;
                 }

@@ -16,7 +16,6 @@ import com.snakegj.popup.PopupPause;
 
 public class Jeu extends AppCompatActivity {
     private TextView txtScore;
-    private TextView meilleurScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
