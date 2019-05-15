@@ -15,6 +15,7 @@
 
         <activity android:name=".popup.PopupFinPartie" />
         <activity android:name=".popup.PopupPause" />
+        <activity android:name=".popup.PopupPseudo" />
         <activity
             android:name=".Classement"
             android:label="@string/title_activity_classement"

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tableau"
+    tools:context=".popup.PopupFinPartie">
+
+    <EditText
+        android:id="@+id/chpPseudo"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/pseudo"
+        android:textColorHint="@color/grisClair"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:background="@drawable/tableau" />
+
+    <Button
+        android:id="@+id/btnValiderPseudo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/chpPseudo"
+        android:layout_marginTop="25dp"
+        android:text="Valider"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/bloomer_demo"
+        android:background="@drawable/design_button"/>
+
+</RelativeLayout>

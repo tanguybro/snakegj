@@ -1,5 +1,5 @@
 - Classement --> si "toto" est 6e, qu'il fait le meilleur score tout en inscrivant tjrs "toto"
-comme pseudo, il sera 1er mais plus 6e --> il devrait etre avoir son pseudo sur les 2
+comme pseudo, il sera 1er mais plus 6e --> il devrait avoir son pseudo sur les 2
 
 - pb collision entre gilets
 

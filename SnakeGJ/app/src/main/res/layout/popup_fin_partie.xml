@@ -6,60 +6,29 @@
     android:background="@drawable/tableau"
     tools:context=".popup.PopupFinPartie">
 
-        <TextView
-            android:id="@+id/descFinPart"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="50dp"
-            android:text="@string/les_gilets_jaunes_ont_succomb"
-            android:textSize="15sp"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/alarm_clock"
-            android:textColor="@android:color/holo_orange_dark" />
-
-        <TextView
-            android:id="@+id/scoreFinal"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_centerHorizontal="true"
-            android:text="@string/votre_score"
-            android:textSize="20sp"
-            android:layout_below="@id/descFinPart"
-            android:fontFamily="@font/alarm_clock"
-            android:textColor="@android:color/holo_orange_dark"
-            android:layout_marginTop="50dp"/>
-
-        <EditText
-            android:id="@+id/chpPseudo"
-            android:layout_width="250dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="25dp"
-            android:layout_below="@id/scoreFinal"
-            android:visibility="invisible"
-            android:gravity="center"
-            android:layout_centerHorizontal="true"
-            android:hint="@string/pseudo"
-            android:textColorHint="@color/grisClair"
-            android:inputType="text"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/bloomer_demo"
-            android:background="@drawable/tableau"/>
-
-    <Button
-        android:id="@+id/btnValider"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
-        android:visibility="gone"
-        android:text="@string/valider"
-        android:textColor="@android:color/white"
-        android:textSize="20sp"
-        android:fontFamily="@font/bloomer_demo"
-        android:layout_below="@id/chpPseudo"
+    <TextView
+        android:id="@+id/descFinPart"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="@string/les_gilets_jaunes_ont_succomb"
+        android:textSize="15sp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
-        android:background="@drawable/design_button"/>
+        android:fontFamily="@font/alarm_clock"
+        android:textColor="@android:color/holo_orange_dark" />
+
+    <TextView
+        android:id="@+id/scoreFinal"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/votre_score"
+        android:textSize="20sp"
+        android:layout_below="@id/descFinPart"
+        android:fontFamily="@font/alarm_clock"
+        android:textColor="@android:color/holo_orange_dark"
+        android:layout_marginTop="50dp"/>
 
     <Button
         android:id="@+id/btnRejouer"
@@ -69,7 +38,7 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:fontFamily="@font/bloomer_demo"
-        android:layout_below="@id/btnValider"
+        android:layout_below="@id/scoreFinal"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:background="@drawable/design_button"/>
