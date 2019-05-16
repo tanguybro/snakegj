@@ -52,8 +52,8 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             return;
         canvas.drawColor(Color.WHITE);  // on efface l'écran, en blanc
         fondJeu.dessiner(canvas);
-        serpent.dessiner(canvas);
         fruit.dessiner(canvas);
+        serpent.dessiner(canvas);
         afficherMeilleurScore(canvas);
     }
 
@@ -143,7 +143,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
         fondJeu.modifierDimensions(w,h);
-        serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 10, 10);
+        serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fondJeu.redimensionner(getContext(), R.drawable.background, 1, 1);
     }

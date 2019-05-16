@@ -9,7 +9,7 @@ public class Serpent extends ElementGraphique {
     private final Anneau tete;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
-    private static final int PAS = 85; //déplacement du snake
+    private static final int PAS = 82; //déplacement du snake
 
     public Serpent() {
         tete = new Anneau(100, 200);

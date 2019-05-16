@@ -23,8 +23,7 @@
         android:id="@+id/jouer"
         android:layout_width="150dp"
         android:layout_height="70dp"
-        android:layout_below="@id/titre"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="275dp"
         android:layout_centerHorizontal="true"
         android:background="@drawable/design_button"
         android:text="@string/jouer"
@@ -37,12 +36,22 @@
         android:layout_width="160dp"
         android:layout_height="70dp"
         android:layout_below="@id/jouer"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:layout_marginTop="35dp"
         android:background="@drawable/design_button"
         android:text="@string/classement"
         android:textSize="25sp"
         android:textColor="@android:color/white"
         android:fontFamily="@font/bloomer_demo"/>
+
+    <TextView
+        android:id="@+id/pseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pseudo : toto"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_margin="5dp"/>
 
 </RelativeLayout>

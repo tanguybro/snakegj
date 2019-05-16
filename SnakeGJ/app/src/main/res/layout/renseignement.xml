@@ -3,16 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/tableau"
+    android:background="@drawable/classement_background"
     tools:context=".popup.PopupFinPartie">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="300dp"
+        android:layout_height="325dp"
+        android:src="@drawable/logo_sankegj"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/titrePseudo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:text="Un valeureux combattant se doit d'avoir un nom"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="25sp"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_centerHorizontal="true"
+        />
 
     <EditText
         android:id="@+id/chpPseudo"
-        android:layout_width="250dp"
+        android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_marginTop="25dp"
         android:gravity="center"
-        android:layout_centerHorizontal="true"
+        android:layout_below="@id/titrePseudo"
+        android:layout_centerInParent="true"
         android:hint="@string/pseudo"
         android:textColorHint="@color/grisClair"
         android:inputType="text"
