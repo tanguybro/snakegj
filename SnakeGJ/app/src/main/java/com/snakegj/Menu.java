@@ -26,7 +26,7 @@ public class Menu extends AppCompatActivity {
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, Jeu.class));
+                startActivity(new Intent(Menu.this, ChargementJeu.class));
             }
         });
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/classement_background"
+    tools:context=".ChargementJeu">
+
+    <ImageView
+        android:id="@+id/logoCharg1"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:src="@drawable/logo2"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@id/logoCharg2"/>
+
+    <ImageView
+        android:id="@+id/logoCharg2"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:src="@drawable/logo2"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/logoCharg3"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:src="@drawable/logo2"
+        android:layout_toRightOf="@id/logoCharg2"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Armez-vous..."
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/logoCharg2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+</RelativeLayout>

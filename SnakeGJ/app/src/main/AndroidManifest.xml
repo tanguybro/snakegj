@@ -8,28 +8,30 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/snakegj"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        android:largeHeap="true">
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".ChargementJeu"></activity>
+        <activity android:name=".ChargementApp">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".popup.PopupFinPartie" />
         <activity android:name=".popup.PopupPause" />
         <activity android:name=".Renseignement" />
         <activity
             android:name=".Classement"
             android:label="@string/title_activity_classement"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".jeu.Jeu"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".Menu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Menu"></activity>
     </application>
 
 </manifest>
