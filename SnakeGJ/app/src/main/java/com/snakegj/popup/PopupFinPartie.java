@@ -88,7 +88,7 @@ public class PopupFinPartie extends AppCompatActivity {
                 int i = 0;
                 int total = (int) dataSnapshot.getChildrenCount();
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
-                    if(score > d.getValue(Integer.class)) {
+                    if(score >= d.getValue(Integer.class)) {
                         int position = total - i;
                         descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + "EME" );
                         inscrireClassement(score);

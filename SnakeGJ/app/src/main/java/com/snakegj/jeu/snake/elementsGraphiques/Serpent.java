@@ -47,22 +47,22 @@ public class Serpent extends ElementGraphique {
     public void deplacer() {
         switch (cap) {
             case EST:
-                tete.avancerA(getX() + PAS, getY(), true);
+                tete.avancerA(getX() + largeurAnneau, getY(), true);
                 if(estAuBord())
                     tete.avancerA(0, getY(), true);
                 break;
             case OUEST:
-                tete.avancerA(getX() - PAS, getY(), true);
+                tete.avancerA(getX() - largeurAnneau, getY(), true);
                 if(estAuBord())
                     tete.avancerA(FondJeu.getLargeur() - largeurAnneau , getY(), true);
                 break;
             case SUD:
-                tete.avancerA(getX(), getY() + PAS, true);
+                tete.avancerA(getX(), getY() + hauteurAnneau, true);
                 if(estAuBord())
                     tete.avancerA(getX(), 0, true);
                 break;
             case NORD:
-                tete.avancerA(getX(), getY() - PAS ,true);
+                tete.avancerA(getX(), getY() - hauteurAnneau ,true);
                 if(estAuBord())
                     tete.avancerA(getX(), FondJeu.getHauteur() - hauteurAnneau, true);
                 break;
@@ -70,7 +70,10 @@ public class Serpent extends ElementGraphique {
     }
 
     private boolean estAuBord() {
-        return tete.getX() > FondJeu.getLargeur() || tete.getY() > FondJeu.getHauteur() || tete.getX() + largeurAnneau < 0 || tete.getY() + hauteurAnneau < 0;
+        return tete.getX() + largeurAnneau > FondJeu.getLargeur()
+                || tete.getY() + hauteurAnneau > FondJeu.getHauteur()
+                || tete.getX() + largeurAnneau < 0
+                || tete.getY() + hauteurAnneau < 72;
     }
 
     public boolean seTouche() {

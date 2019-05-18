@@ -3,14 +3,14 @@ package com.snakegj.jeu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
 
 import com.snakegj.R;
 import com.snakegj.jeu.plan.Direction;
@@ -131,9 +131,21 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     // nous obtenons ici la largeur/hauteur de l'écran en pixels
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
+
+        int hj = getToolbarHeight();
+        Log.d("ecran", h + " " + w + " " + hj);
+
         fondJeu.modifierDimensions(w,h);
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fondJeu.redimensionner(getContext(), R.drawable.background, 1, 1);
+    }
+
+    private int getToolbarHeight() {
+        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(
+                new int[] { android.R.attr.actionBarSize });
+        int mActionBarSize = (int) styledAttributes.getDimension(0, 0);
+        styledAttributes.recycle();
+        return mActionBarSize;
     }
 }

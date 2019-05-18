@@ -5,7 +5,7 @@ class JeuThread extends Thread {
         private final static int IMG_PAR_SDE = 1;
 
         //1 image en 200 ms
-        private final static int FREQUENCE = 200 / IMG_PAR_SDE;
+        private final static int FREQUENCE = 175 / IMG_PAR_SDE;
 
         private final JeuVue view;
         private boolean running = false; // état du thread
