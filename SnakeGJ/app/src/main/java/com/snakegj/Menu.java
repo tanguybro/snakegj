@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
 import com.snakegj.jeu.Jeu;
-import com.snakegj.popup.Renseignement;
 
 
 public class Menu extends AppCompatActivity {

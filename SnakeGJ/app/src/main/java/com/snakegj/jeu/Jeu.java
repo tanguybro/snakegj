@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.snakegj.R;
@@ -16,6 +19,7 @@ import com.snakegj.popup.PopupPause;
 
 public class Jeu extends AppCompatActivity {
     private TextView txtScore;
+    private TextView txtBestScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +40,17 @@ public class Jeu extends AppCompatActivity {
     }
 
     private void initScores() {
-        txtScore = new TextView(this);
-        txtScore.setText("SCORE : 0");
-        txtScore.setTextSize(20);
-        txtScore.setGravity(Gravity.START);
-        txtScore.setTextColor(getResources().getColor(android.R.color.holo_orange_dark));
-        Typeface typeS = Typeface.createFromAsset(getAssets(),"fonts/alarm_clock.ttf");
-        txtScore.setTypeface(typeS);
+
+        View view = LayoutInflater.from(this).inflate(R.layout.jeu, null);
+        txtScore = view.findViewById(R.id.score);
+        txtBestScore = view.findViewById(R.id.meilleurScore);
+        int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
+        txtBestScore.setText("MEILLEUR SCORE : " + bestScore);
+
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(txtScore);
+        getSupportActionBar().setCustomView(view);
+
+
     }
 
     @Override

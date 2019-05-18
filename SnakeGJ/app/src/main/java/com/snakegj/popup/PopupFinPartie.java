@@ -27,7 +27,7 @@ public class PopupFinPartie extends AppCompatActivity {
     private TextView txtScore;
     private Button btnRejouer;
     private Button btnQuitter;
-    private SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class PopupFinPartie extends AppCompatActivity {
         btnRejouer = findViewById(R.id.btnRejouer);
         btnQuitter = findViewById(R.id.btnQuitter);
         descFinPartie = findViewById(R.id.descFinPart);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final int score = getIntent().getIntExtra("score", 0);
 
         txtScore.setText("VOTRE SCORE : " + score);

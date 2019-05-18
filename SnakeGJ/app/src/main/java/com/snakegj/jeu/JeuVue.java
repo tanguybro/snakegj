@@ -54,17 +54,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fondJeu.dessiner(canvas);
         fruit.dessiner(canvas);
         serpent.dessiner(canvas);
-        afficherMeilleurScore(canvas);
-    }
-
-    private void afficherMeilleurScore(Canvas canvas) {
-        Paint meilleurScore = new Paint();
-        meilleurScore.setColor(Color.WHITE);
-        meilleurScore.setTextSize(30);
-        Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/bloomer_demo.otf");
-        meilleurScore.setTypeface(typeface);
-        int bestScore = PreferenceManager.getDefaultSharedPreferences(context).getInt("Meilleur Score", 0);
-        canvas.drawText("Meilleur score : " + bestScore, 10, 50, meilleurScore);
     }
 
     //gestion du serpent
