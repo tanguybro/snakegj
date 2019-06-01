@@ -38,17 +38,14 @@ public class Jeu extends AppCompatActivity {
     }
 
     private void initScores() {
-
         View view = LayoutInflater.from(this).inflate(R.layout.jeu, null);
         txtScore = view.findViewById(R.id.score);
         txtBestScore = view.findViewById(R.id.meilleurScore);
         int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
-        txtBestScore.setText("MEILLEUR SCORE : " + bestScore);
+        txtBestScore.setText("RECORD : " + bestScore);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
-
-
     }
 
     @Override

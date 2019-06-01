@@ -41,6 +41,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private void finPartie() {
+        jeuThread.setRunning(false);
         Intent intent = new Intent(context, PopupFinPartie.class);
         intent.putExtra("score", score);
         context.startActivity(intent);
@@ -59,14 +60,14 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     //gestion du serpent
     public void update() {
         serpent.deplacer();
+        if(serpent.seTouche())
+            finPartie();
         if(estSurFruit()) {
               serpent.manger();
               fruit.apparaitre(serpent);
               score++;
               jeu.modifScore("SCORE : " + score);
         }
-        if(serpent.seTouche())
-            finPartie();
     }
 
     private boolean estSurFruit() {

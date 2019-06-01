@@ -10,7 +10,7 @@
         android:id="@+id/logo"
         android:layout_width="300dp"
         android:layout_height="325dp"
-        android:src="@drawable/logo_sankegj"
+        android:src="@drawable/logo_snakegj"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -23,8 +23,7 @@
         android:textColor="@android:color/white"
         android:textSize="25sp"
         android:fontFamily="@font/bloomer_demo"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/chpPseudo"

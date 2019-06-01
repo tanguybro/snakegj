@@ -9,7 +9,6 @@ public class Serpent extends ElementGraphique {
     private final Anneau tete;
     private Direction cap;
     private static int hauteurAnneau, largeurAnneau;
-    private static final int PAS = 82; //déplacement du snake
 
     public Serpent() {
         tete = new Anneau(100, 200);
@@ -72,7 +71,7 @@ public class Serpent extends ElementGraphique {
     private boolean estAuBord() {
         return tete.getX() + largeurAnneau > FondJeu.getLargeur()
                 || tete.getY() + hauteurAnneau > FondJeu.getHauteur()
-                || tete.getX() + largeurAnneau < 0
+                || tete.getX() + largeurAnneau <= 0
                 || tete.getY() + hauteurAnneau < 72;
     }
 
