@@ -24,9 +24,6 @@ import com.snakegj.jeu.Jeu;
 public class PopupFinPartie extends AppCompatActivity {
 
     private TextView descFinPartie;
-    private TextView txtScore;
-    private Button btnRejouer;
-    private Button btnQuitter;
     private SharedPreferences preferences;
 
     @Override
@@ -34,9 +31,9 @@ public class PopupFinPartie extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popup_fin_partie);
 
-        txtScore = findViewById(R.id.scoreFinal);
-        btnRejouer = findViewById(R.id.btnRejouer);
-        btnQuitter = findViewById(R.id.btnQuitter);
+        TextView txtScore = findViewById(R.id.scoreFinal);
+        Button btnRejouer = findViewById(R.id.btnRejouer);
+        Button btnQuitter = findViewById(R.id.btnQuitter);
         descFinPartie = findViewById(R.id.descFinPart);
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final int score = getIntent().getIntExtra("score", 0);
@@ -69,7 +66,7 @@ public class PopupFinPartie extends AppCompatActivity {
         if(score > preferences.getInt("Meilleur Score", 0)) {
             SharedPreferences.Editor editor = preferences.edit();
             editor.putInt("Meilleur Score", score);
-            editor.commit();
+            editor.apply();
         }
     }
 

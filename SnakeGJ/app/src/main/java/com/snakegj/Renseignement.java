@@ -1,5 +1,6 @@
 package com.snakegj;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -32,7 +33,8 @@ public class Renseignement extends AppCompatActivity {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Renseignement.this);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("pseudo", champPseudo.getText().toString());
-                    editor.commit();
+                    editor.apply();
+                    startActivity(new Intent(Renseignement.this, Menu.class));
                     finish();
                 }
             }

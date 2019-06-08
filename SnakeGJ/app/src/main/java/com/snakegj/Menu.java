@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
-import com.snakegj.jeu.Jeu;
 
 
 public class Menu extends AppCompatActivity {
@@ -37,8 +36,10 @@ public class Menu extends AppCompatActivity {
             }
         });
 
-        if(PreferenceManager.getDefaultSharedPreferences(this).getString("pseudo", "").equals(""))
+        if(PreferenceManager.getDefaultSharedPreferences(this).getString("pseudo", "").equals("")) {
             startActivity(new Intent(this, Renseignement.class));
+            finish();
+        }
 
         String pseudoMemo = PreferenceManager.getDefaultSharedPreferences(this).getString("pseudo", "");
         pseudoMenu.setText("Pseudo : " + pseudoMemo);

@@ -3,14 +3,11 @@ package com.snakegj.jeu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
 
 import com.snakegj.R;
 import com.snakegj.jeu.plan.Direction;
