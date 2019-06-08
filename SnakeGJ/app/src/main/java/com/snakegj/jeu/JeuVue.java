@@ -3,13 +3,16 @@ package com.snakegj.jeu;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.snakegj.R;
+import com.snakegj.Renseignement;
 import com.snakegj.jeu.plan.Direction;
 import com.snakegj.jeu.snake.elementsGraphiques.FondJeu;
 import com.snakegj.jeu.snake.elementsGraphiques.Fruit;

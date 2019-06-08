@@ -1,14 +1,17 @@
 package com.snakegj;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import com.snakegj.jeu.Jeu;
+import com.snakegj.popup.PopupTutoriel;
 
 public class ChargementJeu extends AppCompatActivity {
 
@@ -24,7 +27,15 @@ public class ChargementJeu extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(ChargementJeu.this, Jeu.class));
+                SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ChargementJeu.this);
+                if (preferences.getBoolean("firstLaunch", true)) {
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean("firstLaunch", false);
+                    editor.apply();
+                    startActivity(new Intent(ChargementJeu.this, PopupTutoriel.class));
+                }
+                else
+                    startActivity(new Intent(ChargementJeu.this, Jeu.class));
                 finish();
             }
         }, 4000);
@@ -33,7 +44,5 @@ public class ChargementJeu extends AppCompatActivity {
         logo1.startAnimation(animation);
         logo2.startAnimation(animation);
         logo3.startAnimation(animation);
-
-
     }
 }
