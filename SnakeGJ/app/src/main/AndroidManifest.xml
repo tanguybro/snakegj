@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.snakegj"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,17 +14,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".ChargementJeu"></activity>
-        <activity android:name=".ChargementApp">
+        <activity android:name=".ChargementJeu"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ChargementApp"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".popup.PopupFinPartie" />
-        <activity android:name=".popup.PopupPause" />
-        <activity android:name=".Renseignement" />
+        <activity android:name=".popup.PopupFinPartie"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".popup.PopupPause"
+            android:screenOrientation="portrait" />
+        <activity android:name=".popup.PopupTutoriel"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Renseignement"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Classement"
             android:label="@string/title_activity_classement"
@@ -33,7 +40,8 @@
             android:name=".jeu.Jeu"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Menu"></activity>
+        <activity android:name=".Menu"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

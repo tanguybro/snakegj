@@ -57,9 +57,7 @@ public class PopupFinPartie extends AppCompatActivity {
                 finish();
             }
         });
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        getWindow().setLayout((int) (dm.widthPixels * 0.8), (int) (dm.heightPixels * 0.8));
+
     }
 
     private void inscrireMeilleurScoreSiSuperieur(int score) {
