@@ -68,9 +68,10 @@ public class PopupFinPartie extends AppCompatActivity {
         }
     }
 
-    private void inscrireClassement(int score) {
+    private void inscrireClassement(int score, DataSnapshot d) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        database.child(preferences.getString("pseudo","Anonyme")).setValue(score);
+        if(d == null || d.getValue(Integer.class) < score)
+            database.child(preferences.getString("pseudo","Anonyme")).setValue(score);
     }
 
     private void inscrireScoreSiDansClassement(final int score) {
@@ -82,11 +83,17 @@ public class PopupFinPartie extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int i = 0;
                 int total = (int) dataSnapshot.getChildrenCount();
+                DataSnapshot pseudo = null;
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if(ds.getKey().equals(preferences.getString("pseudo","Anonyme")))
+                        pseudo = ds;
+                }
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
                     if(score >= d.getValue(Integer.class)) {
                         int position = total - i;
                         descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + "EME" );
-                        inscrireClassement(score);
+
+                            inscrireClassement(score, pseudo);
                     }
                     i++;
                 }
