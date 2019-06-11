@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
+import com.snakegj.chargement.ChargementJeu;
 
 
 public class Menu extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.chargement;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+
+import com.snakegj.Menu;
+import com.snakegj.R;
 
 public class ChargementApp extends AppCompatActivity {
 

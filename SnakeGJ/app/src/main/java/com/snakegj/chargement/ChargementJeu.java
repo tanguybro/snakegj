@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.chargement;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.snakegj.R;
 import com.snakegj.jeu.Jeu;
 import com.snakegj.popup.PopupTutoriel;
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grisFonce"
-    tools:context=".ChargementApp">
+    tools:context=".chargement.ChargementApp">
 
     <ImageView
         android:id="@+id/logo"

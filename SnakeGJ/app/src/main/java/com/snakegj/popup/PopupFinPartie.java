@@ -19,12 +19,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.snakegj.Menu;
 import com.snakegj.R;
+import com.snakegj.Score;
 import com.snakegj.jeu.Jeu;
 
 public class PopupFinPartie extends AppCompatActivity {
 
     private TextView descFinPartie;
-    private SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +35,11 @@ public class PopupFinPartie extends AppCompatActivity {
         Button btnRejouer = findViewById(R.id.btnRejouer);
         Button btnQuitter = findViewById(R.id.btnQuitter);
         descFinPartie = findViewById(R.id.descFinPart);
-        preferences = PreferenceManager.getDefaultSharedPreferences(this);
         final int score = getIntent().getIntExtra("score", 0);
 
         txtScore.setText("VOTRE SCORE : " + score);
-        inscrireScoreSiDansClassement(score);
-        inscrireMeilleurScoreSiSuperieur(score);
+        Score.inscrireScoreSiDansClassement(score, descFinPartie);
+        if(Score.getMeilleurScore() > score) Score.inscrireMeilleurScore(score);
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,49 +59,5 @@ public class PopupFinPartie extends AppCompatActivity {
 
     }
 
-    private void inscrireMeilleurScoreSiSuperieur(int score) {
-        if(score > preferences.getInt("Meilleur Score", 0)) {
-            SharedPreferences.Editor editor = preferences.edit();
-            editor.putInt("Meilleur Score", score);
-            editor.apply();
-        }
-    }
-
-    private void inscrireClassement(int score, DataSnapshot d) {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        if(d == null || d.getValue(Integer.class) < score)
-            database.child(preferences.getString("pseudo","Anonyme")).setValue(score);
-    }
-
-    private void inscrireScoreSiDansClassement(final int score) {
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        Query q = database.orderByValue().limitToLast(10);
-
-        q.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                int total = (int) dataSnapshot.getChildrenCount();
-                DataSnapshot pseudo = null;
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if(ds.getKey().equals(preferences.getString("pseudo","Anonyme")))
-                        pseudo = ds;
-                }
-                for(DataSnapshot d : dataSnapshot.getChildren()) {
-                    if(score >= d.getValue(Integer.class)) {
-                        int position = total - i;
-                        descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + "EME" );
-
-                            inscrireClassement(score, pseudo);
-                    }
-                    i++;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
-    }
 
 }
