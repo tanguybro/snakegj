@@ -52,7 +52,7 @@ public class Classement extends AppCompatActivity {
         TableRow entete = (TableRow) getLayoutInflater().inflate(R.layout.classement_entete, null);
         table.addView(entete);
 
-        Query q = database.orderByValue().limitToLast(10);
+        Query q = database.orderByValue();
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

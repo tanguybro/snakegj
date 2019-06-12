@@ -15,24 +15,12 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Score {
 
-    private static SharedPreferences preferences;
-
-    public static void init(Context context) {
-        preferences = PreferenceManager.getDefaultSharedPreferences(context);
-    }
-
-    public static int getMeilleurScore() {
-        return preferences.getInt("Meilleur Score", 0);
-    }
-
-    public static void inscrireMeilleurScore(int score) {
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("Meilleur Score", score);
-        editor.apply();
-    }
+    private static DataSnapshot data = null;
 
     public static void inscrireDansClassement(int score, String pseudo) {
 
+
+        data = null;
     }
 
     private static boolean estDansClassement(int score) {
@@ -42,7 +30,7 @@ public class Score {
     private static void inscrireClassement(int score, DataSnapshot d) {
         DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
         if(d == null || d.getValue(Integer.class) < score)
-            database.child(preferences.getString("pseudo","Anonyme")).setValue(score);
+            database.child(CurrentUser.getPseudo()).setValue(score);
     }
 
     // provisoire
@@ -57,7 +45,7 @@ public class Score {
                 int total = (int) dataSnapshot.getChildrenCount();
                 DataSnapshot pseudo = null;
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if(ds.getKey().equals(preferences.getString("pseudo","Anonyme")))
+                    if(ds.getKey().equals(CurrentUser.getPseudo()))
                         pseudo = ds;
                 }
                 for(DataSnapshot d : dataSnapshot.getChildren()) {

@@ -8,8 +8,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import com.snakegj.CurrentUser;
 import com.snakegj.Menu;
 import com.snakegj.R;
+import com.snakegj.Renseignement;
 
 public class ChargementApp extends AppCompatActivity {
 
@@ -19,11 +21,15 @@ public class ChargementApp extends AppCompatActivity {
         setContentView(R.layout.chargement_app);
 
         ImageView logo = findViewById(R.id.logo);
+        CurrentUser.init(this);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(ChargementApp.this, Menu.class));
+                if(CurrentUser.getPseudo().equals(""))
+                    startActivity(new Intent(ChargementApp.this, Renseignement.class));
+                else
+                    startActivity(new Intent(ChargementApp.this, Menu.class));
                 finish();
             }
         }, 4000);

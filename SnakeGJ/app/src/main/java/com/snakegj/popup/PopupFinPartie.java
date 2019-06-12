@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.snakegj.CurrentUser;
 import com.snakegj.Menu;
 import com.snakegj.R;
 import com.snakegj.Score;
@@ -39,7 +40,7 @@ public class PopupFinPartie extends AppCompatActivity {
 
         txtScore.setText("VOTRE SCORE : " + score);
         Score.inscrireScoreSiDansClassement(score, descFinPartie);
-        if(Score.getMeilleurScore() > score) Score.inscrireMeilleurScore(score);
+        if(CurrentUser.getMeilleurScore() > score) CurrentUser.setMeilleurScore(score);
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +59,5 @@ public class PopupFinPartie extends AppCompatActivity {
         });
 
     }
-
 
 }

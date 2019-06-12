@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.snakegj.CurrentUser;
 import com.snakegj.R;
 import com.snakegj.popup.PopupPause;
 
@@ -40,8 +41,7 @@ public class Jeu extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.jeu, null);
         txtScore = view.findViewById(R.id.score);
         TextView txtBestScore = view.findViewById(R.id.meilleurScore);
-        int bestScore = PreferenceManager.getDefaultSharedPreferences(this).getInt("Meilleur Score", 0);
-        txtBestScore.setText("RECORD : " + bestScore);
+        txtBestScore.setText("RECORD : " + CurrentUser.getMeilleurScore());
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(view);
