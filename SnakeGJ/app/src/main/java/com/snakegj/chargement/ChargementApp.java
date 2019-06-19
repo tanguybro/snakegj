@@ -1,5 +1,6 @@
 package com.snakegj.chargement;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -19,13 +20,13 @@ public class ChargementApp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chargement_app);
-
+        final Context context = this;
         ImageView logo = findViewById(R.id.logo);
-        CurrentUser.init(this);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                CurrentUser.init(context);
                 if(CurrentUser.getPseudo().equals(""))
                     startActivity(new Intent(ChargementApp.this, Renseignement.class));
                 else
@@ -36,6 +37,5 @@ public class ChargementApp extends AppCompatActivity {
 
         Animation anim = AnimationUtils.loadAnimation(this,R.anim.fondu);
         logo.startAnimation(anim);
-
     }
 }

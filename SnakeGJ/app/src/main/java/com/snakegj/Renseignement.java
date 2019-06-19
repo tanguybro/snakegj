@@ -47,10 +47,7 @@ public class Renseignement extends AppCompatActivity {
                 else if(contientCaracSpeciaux(champPseudo.getText().toString()))
                     Toast.makeText(Renseignement.this, "Pseudo invalide : caractères spéciaux à retirer", Toast.LENGTH_SHORT).show();
                 else {
-                    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(Renseignement.this);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("pseudo", champPseudo.getText().toString());
-                    editor.apply();
+                    CurrentUser.setPseudo(champPseudo.getText().toString());
                     startActivity(new Intent(Renseignement.this, Menu.class));
                     finish();
                 }

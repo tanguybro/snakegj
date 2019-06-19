@@ -13,7 +13,8 @@ public class CurrentUser {
     public static void init(Context context) {
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
         meilleurScore = preferences.getInt("Meilleur Score", 0);
-        CurrentUser.pseudo = preferences.getString("Pseudo", "");
+        pseudo = preferences.getString("pseudo", "");
+        Score.inscrireScoreSiDansClassement(meilleurScore, null);
     }
 
     public static String getPseudo() {
@@ -22,6 +23,13 @@ public class CurrentUser {
 
     public static int getMeilleurScore() {
         return meilleurScore;
+    }
+
+    public static void setPseudo(String pseudo) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("pseudo", pseudo);
+        editor.apply();
+        CurrentUser.pseudo = pseudo;
     }
 
     public static void setMeilleurScore(int score) {

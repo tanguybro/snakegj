@@ -40,7 +40,7 @@ public class PopupFinPartie extends AppCompatActivity {
 
         txtScore.setText("VOTRE SCORE : " + score);
         Score.inscrireScoreSiDansClassement(score, descFinPartie);
-        if(CurrentUser.getMeilleurScore() > score) CurrentUser.setMeilleurScore(score);
+        if(score > CurrentUser.getMeilleurScore()) CurrentUser.setMeilleurScore(score);
 
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override

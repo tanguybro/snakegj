@@ -48,11 +48,11 @@ public class Classement extends AppCompatActivity {
     }
 
     private void afficherClassement() {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Scores");
         TableRow entete = (TableRow) getLayoutInflater().inflate(R.layout.classement_entete, null);
         table.addView(entete);
 
-        Query q = database.orderByValue();
+        Query q = database.orderByValue().limitToLast(10);
         q.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

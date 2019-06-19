@@ -1,9 +1,7 @@
 package com.snakegj;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,28 +13,15 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Score {
 
-    private static DataSnapshot data = null;
-
-    public static void inscrireDansClassement(int score, String pseudo) {
-
-
-        data = null;
-    }
-
-    private static boolean estDansClassement(int score) {
-        return true; // A CODER
-    }
-
     private static void inscrireClassement(int score, DataSnapshot d) {
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
+        DatabaseReference database = FirebaseDatabase.getInstance().getReference("Scores");
         if(d == null || d.getValue(Integer.class) < score)
             database.child(CurrentUser.getPseudo()).setValue(score);
     }
 
-    // provisoire
     public static void inscrireScoreSiDansClassement(final int score, final TextView descFinPartie) {
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Classement");
-        Query q = database.orderByValue();
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Scores");
+        Query q = database.orderByValue().limitToLast(10);
 
         q.addValueEventListener(new ValueEventListener() {
             @Override
@@ -51,7 +36,10 @@ public class Score {
                 for(DataSnapshot d : dataSnapshot.getChildren()) {
                     if(score >= d.getValue(Integer.class)) {
                         int position = total - i;
-                        descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + "EME" );
+                        String nomPos = "EME";
+                        if(position == 1) nomPos = "ER";
+                        if(descFinPartie != null)
+                            descFinPartie.setText("BRAVO MANIFESTANT ! VOUS ETES " + position + nomPos);
                         inscrireClassement(score, pseudo);
                     }
                     i++;
