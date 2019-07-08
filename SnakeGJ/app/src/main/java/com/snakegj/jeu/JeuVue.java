@@ -4,9 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.preference.PreferenceManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -14,6 +17,7 @@ import android.view.SurfaceView;
 import com.snakegj.R;
 import com.snakegj.Renseignement;
 import com.snakegj.jeu.plan.Direction;
+import com.snakegj.jeu.snake.Anneau;
 import com.snakegj.jeu.snake.elementsGraphiques.FondJeu;
 import com.snakegj.jeu.snake.elementsGraphiques.Fruit;
 import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
@@ -38,6 +42,9 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         score = 0;
         jeu = j;
         this.context = context;
+        BitmapDrawable b = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
+        BitmapDrawable image = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(b.getBitmap(), 12, 12, true));
+        Anneau.initImageTete(image);
     }
 
     private void finPartie() {
@@ -45,6 +52,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         Intent intent = new Intent(context, PopupFinPartie.class);
         intent.putExtra("score", score);
         context.startActivity(intent);
+        jeu.finirActivite();
     }
 
     //dessine un écran de jeu

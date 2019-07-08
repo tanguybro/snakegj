@@ -3,6 +3,8 @@ package com.snakegj.jeu.snake;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.content.res.ResourcesCompat;
 
 import com.snakegj.jeu.plan.Direction;
 import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
@@ -10,6 +12,7 @@ import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
 public class Anneau {
     private Anneau suivant;
     private int x, y;
+    private static BitmapDrawable imageTete;
 
     public Anneau(int x, int y) {
         suivant = null;
@@ -83,5 +86,13 @@ public class Anneau {
             return false;
         else
             return suivant.posDansSerpent(x,y);
+    }
+
+    public static void initImageTete(BitmapDrawable imgTete) {
+        imageTete = imgTete;
+    }
+
+    public static Bitmap getImageTete() {
+        return imageTete.getBitmap();
     }
 }

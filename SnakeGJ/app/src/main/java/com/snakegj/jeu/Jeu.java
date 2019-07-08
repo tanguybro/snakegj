@@ -47,6 +47,10 @@ public class Jeu extends AppCompatActivity {
         getSupportActionBar().setCustomView(view);
     }
 
+    public void finirActivite() {
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         getMenuInflater().inflate(R.menu.menu_jeu, menu);

@@ -51,4 +51,26 @@ public class Score {
             }
         });
     }
+
+    public static void inscrireScoreParDefaut() {
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("Scores");
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DataSnapshot pseudo = null;
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if(ds.getKey().equals(CurrentUser.getPseudo()))
+                        pseudo = ds;
+                }
+                for(DataSnapshot d : dataSnapshot.getChildren()) {
+                    inscrireClassement(0, pseudo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+    }
 }

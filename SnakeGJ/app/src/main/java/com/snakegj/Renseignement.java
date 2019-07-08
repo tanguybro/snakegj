@@ -18,6 +18,7 @@ import com.google.ads.consent.ConsentInformation;
 import com.google.ads.consent.ConsentStatus;
 import static com.google.ads.consent.ConsentStatus.NON_PERSONALIZED;
 import static com.google.ads.consent.ConsentStatus.PERSONALIZED;
+import static com.snakegj.Score.inscrireScoreParDefaut;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -43,9 +44,16 @@ public class Renseignement extends AppCompatActivity {
                 else if(contientCaracSpeciaux(champPseudo.getText().toString()))
                     Toast.makeText(Renseignement.this, "Pseudo invalide : caractères spéciaux à retirer", Toast.LENGTH_SHORT).show();
                 else {
-                    CurrentUser.setPseudo(champPseudo.getText().toString());
-                    startActivity(new Intent(Renseignement.this, Menu.class));
-                    finish();
+                    if(pseudoDejaPris()) {
+                        Toast.makeText(Renseignement.this, "Pseudo déjà utilisé", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        CurrentUser.setPseudo(champPseudo.getText().toString());
+                        Score.inscrireScoreParDefaut();
+                        startActivity(new Intent(Renseignement.this, Menu.class));
+                        finish();
+                    }
+
                 }
             }
         });
@@ -53,6 +61,10 @@ public class Renseignement extends AppCompatActivity {
 
     private boolean contientCaracSpeciaux(String string) {
         return Pattern.compile("[@#$%*^¨&+-=()_<>.,;!?/]").matcher(string).find();
+    }
+
+    private boolean pseudoDejaPris() {
+        return true;
     }
 
 

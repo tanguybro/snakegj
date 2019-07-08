@@ -98,7 +98,9 @@ public class Serpent extends ElementGraphique {
     public void dessiner(Canvas canvas) {
         if(getImage() == null)
             return;
-        tete.dessiner(canvas, getImage().getBitmap());
+        canvas.drawBitmap(Anneau.getImageTete(), tete.getX(), tete.getY(), null);
+        if(tete.getSuivant() != null)
+            tete.getSuivant().dessiner(canvas, getImage().getBitmap());
     }
 
     @Override
