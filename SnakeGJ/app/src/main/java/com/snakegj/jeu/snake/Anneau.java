@@ -4,7 +4,6 @@ package com.snakegj.jeu.snake;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
-import android.support.v4.content.res.ResourcesCompat;
 
 import com.snakegj.jeu.plan.Direction;
 import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
