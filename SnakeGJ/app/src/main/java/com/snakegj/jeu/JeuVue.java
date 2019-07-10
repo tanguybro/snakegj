@@ -26,6 +26,7 @@ import com.snakegj.popup.PopupFinPartie;
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
     private final Serpent serpent;
+    private final BitmapDrawable tete;
     private final Fruit fruit;
     private final FondJeu fondJeu;
     private final Context context;
@@ -39,12 +40,10 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         fruit = new Fruit();
         serpent = new Serpent();
         fondJeu = new FondJeu();
+        tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
         score = 0;
         jeu = j;
         this.context = context;
-        BitmapDrawable b = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
-        BitmapDrawable image = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(b.getBitmap(), 12, 12, true));
-        Anneau.initImageTete(image);
     }
 
     private void finPartie() {
@@ -142,6 +141,8 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
         fondJeu.modifierDimensions(w,h);
         serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
+        BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
+        Anneau.initImageTete(teteDim);
         fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
         fondJeu.redimensionner(getContext(), R.drawable.background, 1, 1);
     }
