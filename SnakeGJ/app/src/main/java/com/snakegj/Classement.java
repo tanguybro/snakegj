@@ -53,7 +53,7 @@ public class Classement extends AppCompatActivity {
         table.addView(entete);
 
         Query q = database.orderByValue().limitToLast(10);
-        q.addValueEventListener(new ValueEventListener() {
+        q.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ArrayList<View> vues = new ArrayList<>();
