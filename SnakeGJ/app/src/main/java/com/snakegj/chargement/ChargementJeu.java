@@ -33,10 +33,16 @@ public class ChargementJeu extends AppCompatActivity {
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putBoolean("firstLaunch", false);
                     editor.apply();
-                    startActivity(new Intent(ChargementJeu.this, PopupTutoriel.class));
+                    Intent intent = new Intent(ChargementJeu.this, PopupTutoriel.class);
+                    intent.putExtras(getIntent().getExtras());
+                    startActivity(intent);
                 }
-                else
-                    startActivity(new Intent(ChargementJeu.this, Jeu.class));
+                else {
+                    Intent intent = new Intent(ChargementJeu.this, Jeu.class);
+                    intent.putExtras(getIntent().getExtras());
+                    startActivity(intent);
+                }
+
                 finish();
             }
         }, 4000);

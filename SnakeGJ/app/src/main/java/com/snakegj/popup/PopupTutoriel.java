@@ -20,7 +20,9 @@ public class PopupTutoriel extends AppCompatActivity {
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PopupTutoriel.this, Jeu.class));
+                Intent intent = new Intent(PopupTutoriel.this, Jeu.class);
+                intent.putExtras(getIntent().getExtras());
+                startActivity(intent);
                 finish();
             }
         });

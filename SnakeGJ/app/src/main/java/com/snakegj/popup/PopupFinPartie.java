@@ -45,7 +45,9 @@ public class PopupFinPartie extends AppCompatActivity {
         btnRejouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PopupFinPartie.this, Jeu.class));
+                Intent intent = new Intent(PopupFinPartie.this, Jeu.class);
+                intent.putExtras(getIntent().getExtras());
+                startActivity(intent);
                 finish();
             }
         });
