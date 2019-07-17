@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.FirebaseApp;
-import com.snakegj.chargement.ChargementJeu;
 
 public class Menu extends AppCompatActivity {
 
@@ -25,7 +24,7 @@ public class Menu extends AppCompatActivity {
         btnJouer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Menu.this, modeJeu.class));
+                startActivity(new Intent(Menu.this, ModeJeu.class));
             }
         });
 

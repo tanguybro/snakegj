@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import com.snakegj.chargement.ChargementJeu;
 
-public class modeJeu extends AppCompatActivity {
+public class ModeJeu extends AppCompatActivity {
 
     private ImageButton btnGJ;
     private ImageButton btnPl;
@@ -33,7 +33,7 @@ public class modeJeu extends AppCompatActivity {
         btnGJ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(modeJeu.this, ChargementJeu.class);
+                Intent intent = new Intent(ModeJeu.this, ChargementJeu.class);
                 intent.putExtra("mode", "révolution");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fondu_in, R.anim.fondu_out);
@@ -43,7 +43,7 @@ public class modeJeu extends AppCompatActivity {
         btnPl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(modeJeu.this, ChargementJeu.class);
+                Intent intent = new Intent(ModeJeu.this, ChargementJeu.class);
                 intent.putExtra("mode", "dissolution");
                 startActivity(intent);
                 overridePendingTransition(R.anim.fondu_in, R.anim.fondu_out);
