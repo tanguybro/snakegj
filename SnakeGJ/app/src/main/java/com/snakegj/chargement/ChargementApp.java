@@ -35,7 +35,7 @@ public class ChargementApp extends AppCompatActivity {
             }
         }, 4000);
 
-        Animation anim = AnimationUtils.loadAnimation(this,R.anim.fondu);
+        Animation anim = AnimationUtils.loadAnimation(this,R.anim.fondu_in);
         logo.startAnimation(anim);
     }
 }

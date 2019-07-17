@@ -25,22 +25,28 @@ import com.snakegj.popup.PopupFinPartie;
 
 public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     private JeuThread jeuThread;
+    private String mode;
     private final Serpent serpent;
-    private final BitmapDrawable tete;
+    private BitmapDrawable tete;
     private final Fruit fruit;
     private final FondJeu fondJeu;
     private final Context context;
     private final Jeu jeu;
     private static int score;
 
-    public JeuVue(Context context, Jeu j) {
+    public JeuVue(Context context, Jeu j, String mode) {
         super(context);
         getHolder().addCallback(this);
         jeuThread = new JeuThread(this);
+        this.mode = mode;
         fruit = new Fruit();
         serpent = new Serpent();
         fondJeu = new FondJeu();
-        tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
+        //A améliorer
+        if(mode.equals("révolution"))
+            tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
+        else if(mode.equals("dissolution"))
+            tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_policier_tete, null);
         score = 0;
         jeu = j;
         this.context = context;
@@ -50,6 +56,7 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         jeuThread.setRunning(false);
         Intent intent = new Intent(context, PopupFinPartie.class);
         intent.putExtra("score", score);
+        intent.putExtra("mode", mode);
         context.startActivity(intent);
         jeu.finirActivite();
     }
@@ -140,10 +147,18 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
         fondJeu.modifierDimensions(w,h);
-        serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
-        BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
-        Anneau.initImageTete(teteDim);
-        fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
+        if(mode.equals("révolution")) {
+            serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
+            BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
+            Anneau.initImageTete(teteDim);
+            fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
+        }
+        else if(mode.equals("dissolution")) {
+            serpent.redimensionner(getContext(), R.drawable.gilet_policier, 12, 12);
+            BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
+            Anneau.initImageTete(teteDim);
+            fruit.redimensionner(getContext(), R.drawable.logo2, 7, 15);
+        }
         fondJeu.redimensionner(getContext(), R.drawable.background, 1, 1);
     }
 

@@ -25,7 +25,8 @@ public class Jeu extends AppCompatActivity {
         initScores();
         Drawable toolbarDesign = getResources().getDrawable(R.drawable.tableau);
         getSupportActionBar().setBackgroundDrawable(toolbarDesign);
-        setContentView(new JeuVue(this, this));
+        String mode = (String) getIntent().getExtras().get("mode");
+        setContentView(new JeuVue(this, this, mode));
     }
 
     public void modifScore(final String texteScore){
@@ -60,7 +61,9 @@ public class Jeu extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_pause) {
-            startActivity(new Intent(Jeu.this, PopupPause.class));
+            Intent intent = new Intent(Jeu.this, PopupPause.class);
+            intent.putExtras(getIntent().getExtras());
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
