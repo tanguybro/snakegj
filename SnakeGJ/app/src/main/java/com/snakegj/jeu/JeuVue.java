@@ -2,93 +2,55 @@ package com.snakegj.jeu;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.preference.PreferenceManager;
-import android.support.v4.content.res.ResourcesCompat;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.snakegj.R;
-import com.snakegj.Renseignement;
 import com.snakegj.jeu.plan.Direction;
-import com.snakegj.jeu.snake.Anneau;
 import com.snakegj.jeu.snake.elementsGraphiques.FondJeu;
 import com.snakegj.jeu.snake.elementsGraphiques.Fruit;
 import com.snakegj.jeu.snake.elementsGraphiques.Serpent;
-import com.snakegj.popup.PopupFinPartie;
 
-public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
+public abstract class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
+
     private JeuThread jeuThread;
-    private String mode;
-    private final Serpent serpent;
-    private BitmapDrawable tete;
-    private final Fruit fruit;
-    private final FondJeu fondJeu;
-    private final Context context;
-    private final Jeu jeu;
-    private static int score;
+    private Jeu jeu;
+    private Serpent serpent;
+    private Fruit fruit;
+    private FondJeu fondJeu;
 
-    public JeuVue(Context context, Jeu j, String mode) {
+    public JeuVue(Context context, Jeu jeu) {
         super(context);
         getHolder().addCallback(this);
         jeuThread = new JeuThread(this);
-        this.mode = mode;
-        fruit = new Fruit();
         serpent = new Serpent();
+        fruit = new Fruit();
         fondJeu = new FondJeu();
-        //A améliorer
-        if(mode.equals("révolution"))
-            tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_jaune_tete, null);
-        else if(mode.equals("dissolution"))
-            tete = (BitmapDrawable) ResourcesCompat.getDrawable(context.getResources(), R.drawable.gilet_policier_tete, null);
-        score = 0;
-        jeu = j;
-        this.context = context;
+        this.jeu = jeu;
     }
 
-    private void finPartie() {
-        jeuThread.setRunning(false);
-        Intent intent = new Intent(context, PopupFinPartie.class);
-        intent.putExtra("score", score);
-        intent.putExtra("mode", mode);
-        context.startActivity(intent);
-        jeu.finirActivite();
+    public abstract void doDraw(Canvas canvas);
+    public abstract void update();
+
+    public JeuThread getJeuThread() {
+        return jeuThread;
     }
 
-    //dessine un écran de jeu
-    public void doDraw(Canvas canvas) {
-        if(canvas == null)
-            return;
-        canvas.drawColor(Color.WHITE);  // on efface l'écran, en blanc
-        fondJeu.dessiner(canvas);
-        fruit.dessiner(canvas);
-        serpent.dessiner(canvas);
+    public Serpent getSerpent() {
+        return serpent;
     }
 
-    //gestion du serpent
-    public void update() {
-        serpent.deplacer();
-        if(serpent.seTouche())
-            finPartie();
-        if(estSurFruit()) {
-              serpent.manger();
-              fruit.apparaitre(serpent);
-              score++;
-              jeu.modifScore("SCORE : " + score);
-        }
+    public Fruit getFruit() {
+        return fruit;
     }
 
-    private boolean estSurFruit() {
-        return !(fruit.getX() >= serpent.getX() + Serpent.getLargeurAnneau()
-                || fruit.getX() + fruit.getLargeur() <= serpent.getX()
-                || fruit.getY() >= serpent.getY() + Serpent.getHauteurAnneau()
-                || fruit.getY() + fruit.getHauteur() <= serpent.getY());
+    public FondJeu getFondJeu() {
+        return fondJeu;
+    }
+
+    public Jeu getJeu() {
+        return jeu;
     }
 
     // Gère les touchés sur l'écran
@@ -111,7 +73,6 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
         }
         return true;  // On retourne vrai pour indiquer qu'on a géré l'évènement
     }
-
 
     // Fonction obligatoire de l'objet SurfaceView
     // Fonction appelée immédiatement après la création de l'objet SurfaceView
@@ -140,26 +101,4 @@ public class JeuVue extends SurfaceView implements SurfaceHolder.Callback {
             catch (InterruptedException e) {}
         }
     }
-
-    // Fonction obligatoire de l'objet SurfaceView
-    // Fonction appelée à la CREATION et MODIFICATION et ONRESUME de l'écran
-    // nous obtenons ici la largeur/hauteur de l'écran en pixels
-    @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int w, int h) {
-        fondJeu.modifierDimensions(w,h);
-        if(mode.equals("révolution")) {
-            serpent.redimensionner(getContext(), R.drawable.gilet_jaune, 12, 12);
-            BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
-            Anneau.initImageTete(teteDim);
-            fruit.redimensionner(getContext(), R.drawable.police, 12, 15);
-        }
-        else if(mode.equals("dissolution")) {
-            serpent.redimensionner(getContext(), R.drawable.gilet_policier, 12, 12);
-            BitmapDrawable teteDim = new BitmapDrawable(context.getResources(), Bitmap.createScaledBitmap(tete.getBitmap(), w/12, h/12, true));
-            Anneau.initImageTete(teteDim);
-            fruit.redimensionner(getContext(), R.drawable.logo2, 7, 15);
-        }
-        fondJeu.redimensionner(getContext(), R.drawable.background, 1, 1);
-    }
-
 }

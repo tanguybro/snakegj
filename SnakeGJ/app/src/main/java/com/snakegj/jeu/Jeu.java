@@ -3,7 +3,6 @@ package com.snakegj.jeu;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
@@ -26,7 +25,10 @@ public class Jeu extends AppCompatActivity {
         Drawable toolbarDesign = getResources().getDrawable(R.drawable.tableau);
         getSupportActionBar().setBackgroundDrawable(toolbarDesign);
         String mode = (String) getIntent().getExtras().get("mode");
-        setContentView(new JeuVue(this, this, mode));
+        if(mode.equals("révolution"))
+            setContentView(new ModeRevolution(this, this));
+        else if(mode.equals("dissolution"))
+            setContentView(new ModeDissolution(this, this));
     }
 
     public void modifScore(final String texteScore){
