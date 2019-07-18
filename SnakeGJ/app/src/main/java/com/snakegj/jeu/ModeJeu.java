@@ -1,4 +1,4 @@
-package com.snakegj;
+package com.snakegj.jeu;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.snakegj.R;
 import com.snakegj.chargement.ChargementJeu;
 
 public class ModeJeu extends AppCompatActivity {
