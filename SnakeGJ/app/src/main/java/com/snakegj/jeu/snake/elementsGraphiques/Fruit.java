@@ -47,11 +47,6 @@ public class Fruit extends ElementGraphique {
             else
                 y = ytemp;
 
-            Log.d("positionX", x + "");
-            Log.d("positionY", y + "");
-            Log.d("positionFX", FondJeu.getLargeur() + "");
-            Log.d("positionFY", FondJeu.getHauteur() + "");
-
         }
         while(serpent.posDansSerpent(x,y));
     }
