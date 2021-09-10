@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/jeu_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/score"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="SCORE : 0"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="30sp"
+            android:layout_gravity="end"
+            android:gravity="center"
+            android:fontFamily="@font/alarm_clock" />
+
+        <TextView
+            android:id="@+id/meilleurScore"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="RECORD : 0"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:layout_gravity="start"
+            android:gravity="center|left"
+            android:fontFamily="@font/alarm_clock" />
+
+    </android.support.v7.widget.Toolbar>
+
+
+
+
+</RelativeLayout>

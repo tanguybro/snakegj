@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/classement_background"
+    tools:context=".popup.PopupFinPartie">
+
+    <ImageView
+        android:id="@+id/logoPause"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/logo_pause"
+        android:layout_centerHorizontal="true"/>
+
+
+    <Button
+        android:id="@+id/btnReprendre"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/reprendre"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/logoPause"
+        android:layout_centerHorizontal="true"
+
+        android:background="@drawable/design_button" />
+
+    <Button
+        android:id="@+id/btnRejouer"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/rejouer"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/btnReprendre"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/design_button" />
+
+    <Button
+        android:id="@+id/btnQuitter"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="@string/quitter"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/bloomer_demo"
+        android:layout_below="@id/btnRejouer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/design_button" />
+
+</RelativeLayout>
